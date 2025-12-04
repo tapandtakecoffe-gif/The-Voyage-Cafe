@@ -10,9 +10,9 @@ export interface OrderRow {
   customer_name: string;
   table_number?: string;
   timestamp: string;
-  payment_status?: 'pending' | 'paid' | 'failed' | 'not_required';
-  stripe_session_id?: string;
   created_at?: string;
+  payment_status?: string; // Estado del pago
+  stripe_session_id?: string; // ID de sesión de Stripe
 }
 
 // Obtener las variables de entorno
@@ -100,7 +100,7 @@ export const rowToOrder = (row: OrderRow): Order => ({
   customerName: row.customer_name,
   tableNumber: row.table_number || undefined,
   timestamp: new Date(row.timestamp),
-  paymentStatus: row.payment_status || 'not_required',
+  paymentStatus: (row.payment_status as 'not_required' | 'pending' | 'paid' | 'failed') || 'not_required',
   stripeSessionId: row.stripe_session_id || undefined
 });
 
