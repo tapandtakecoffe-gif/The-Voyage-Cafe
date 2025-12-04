@@ -38,6 +38,7 @@ const Admin = () => {
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [historyDialogOpen, setHistoryDialogOpen] = useState(false);
+  const [showPendingPayments, setShowPendingPayments] = useState(false);
 
   // Load orders on mount
   useEffect(() => {
@@ -104,6 +105,16 @@ const Admin = () => {
 
   const activeOrders = filteredAndSortedOrders.filter(o => !['completed', 'cancelled'].includes(o.status));
   const completedOrders = filteredAndSortedOrders.filter(o => ['completed', 'cancelled'].includes(o.status));
+  
+  // Get all pending payment orders (not filtered by payment status)
+  const pendingPaymentOrders = useMemo(() => {
+    return orders.filter(order => 
+      order.paymentStatus === 'pending' && 
+      (!selectedDate || isOrderFromDate(order, selectedDate))
+    ).sort((a, b) => {
+      return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime();
+    });
+  }, [orders, selectedDate]);
   
   // Calculate total for selected date (or today) - ONLY PAID ORDERS
   const dateTotal = useMemo(() => {
@@ -441,6 +452,64 @@ const Admin = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* Pending Payments Section */}
+        {pendingPaymentOrders.length > 0 && (
+          <Card className="mb-6 border-orange-200 bg-orange-50 dark:bg-orange-950/20">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="text-lg">⚠️ Pending Payments</CardTitle>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {pendingPaymentOrders.length} order{pendingPaymentOrders.length !== 1 ? 's' : ''} with pending payment status
+                  </p>
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowPendingPayments(!showPendingPayments)}
+                >
+                  {showPendingPayments ? 'Hide' : 'Show'} Pending
+                </Button>
+              </div>
+            </CardHeader>
+            {showPendingPayments && (
+              <CardContent>
+                <div className="space-y-3">
+                  {pendingPaymentOrders.map((order) => (
+                    <Card key={order.id} className="bg-white dark:bg-gray-900">
+                      <CardContent className="pt-4">
+                        <div className="flex items-center justify-between">
+                          <div className="flex-1">
+                            <p className="font-medium">Order #{order.id}</p>
+                            <p className="text-sm text-muted-foreground">
+                              {order.customerName} • {new Date(order.timestamp).toLocaleString('en-US')}
+                            </p>
+                            <p className="text-sm font-medium mt-1">Total: ₹{order.total.toFixed(2)}</p>
+                          </div>
+                          <Button
+                            size="sm"
+                            className="bg-green-600 hover:bg-green-700"
+                            onClick={() => {
+                              handleMarkAsPaid(order.id);
+                              toast({
+                                title: "Payment confirmed",
+                                description: `Order #${order.id} marked as paid`,
+                              });
+                            }}
+                          >
+                            <CheckCircle2 className="h-4 w-4 mr-2" />
+                            Mark as Paid
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </CardContent>
+            )}
+          </Card>
+        )}
 
         {/* Search and Filters */}
         <div className="mb-6 flex flex-col sm:flex-row gap-4">
