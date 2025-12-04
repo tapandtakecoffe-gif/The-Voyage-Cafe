@@ -119,7 +119,7 @@ export const products: Product[] = [
     name: 'Tofu Scrambled with Sauteed Vegetable',
     description: 'Tofu scrambles tossed with garlic, onion, tomato, mushroom with spiced sauteed vegetable on the side served with a mixed fruit pot. Served with a choice of healthy shot jaggery lemonade or lemon honey water and a choice of bread whole wheat and gluten free',
     price: 405,
-    image: getImage('voyage-breakfast-board-1'),
+    image: '', // No image - doesn't match product
     category: 'voyage-breakfast-board',
     isVeggie: true
   },
@@ -128,7 +128,7 @@ export const products: Product[] = [
     name: 'Crispy Ghee Fried Eggs',
     description: 'Served on toast with tint of indian spiced sauteed vegetable on the side served with a mixed fruit pot. Served with a choice of healthy shot jaggery lemonade or lemon honey water and a choice of bread whole wheat and gluten free',
     price: 405,
-    image: getImage('voyage-breakfast-board-2'),
+    image: '', // No image - doesn't match product
     category: 'voyage-breakfast-board',
     isVeggie: false
   },
@@ -137,7 +137,7 @@ export const products: Product[] = [
     name: 'Paneer Akuri with Sauteed Spinach',
     description: '[Voyage special]. Cottage cheese scrambles tossed with garlic, onion, tomato with spiced, sauteed spinach on the side served with a mixed fruit pot. Served with a choice of healthy shot jaggery lemonade or lemon honey water and a choice of bread whole wheat and gluten free',
     price: 405,
-    image: getImage('voyage-breakfast-board-3'),
+    image: '', // No image - doesn't match product
     category: 'voyage-breakfast-board',
     isVeggie: true
   },
@@ -146,7 +146,7 @@ export const products: Product[] = [
     name: 'Bombay Style Masala Eggs Bhurji with Bread',
     description: 'Bombay style egg bhurji, indian spiced, served with butter toasted bread and a mixed fruit pot. Served with a choice of healthy shot jaggery lemonade or lemon honey water and a choice of bread whole wheat and gluten free',
     price: 405,
-    image: getImage('voyage-breakfast-board-4'),
+    image: '', // No image - doesn't match product
     category: 'voyage-breakfast-board',
     isVeggie: false
   },
@@ -157,7 +157,7 @@ export const products: Product[] = [
     name: 'Choice of Eggs',
     description: 'Plain omelette or masala omelette or scrambled eggs or sunny side up or poached eggs or masala scrambled eggs. Rich in protein and vitamins. Served with grilled tomato and choice of bread whole wheat and gluten free',
     price: 215,
-    image: getImage('voyage-eggs-1'),
+    image: '', // No image - doesn't match product
     category: 'voyage-eggs',
     isVeggie: false
   },
@@ -166,7 +166,7 @@ export const products: Product[] = [
     name: 'Sauteed Garlic Spinach Omelette',
     description: '3 Eggs, sauteed garlic, sauteed spinach, crushed pepper served with toasted bread and grilled tomato. Rice in protein and vitamins. Served with grilled tomato and choice of bread whole wheat and gluten free',
     price: 275,
-    image: getImage('voyage-eggs-2'),
+    image: '', // No image - doesn't match product
     category: 'voyage-eggs',
     isVeggie: false
   },
@@ -175,7 +175,7 @@ export const products: Product[] = [
     name: 'Fresh Herbs Mushroom Stuffed Omelette with Feta Cheese',
     description: '3 Eggs, mix herbs, bottom mushroom feta on top served with toasted bread and grilled tomato. Rice in protein and vitamins. Served with grilled tomato and choice of bread whole wheat and gluten free',
     price: 315,
-    image: getImage('voyage-eggs-3'),
+    image: '', // No image - doesn't match product
     category: 'voyage-eggs',
     isVeggie: false
   },
@@ -184,7 +184,7 @@ export const products: Product[] = [
     name: 'Scrambled Eggs with Truffle Oil',
     description: '[Voyage special]. 3 Eggs cooked in truffle oil, salt and pepper to taste served with toasted bread and grilled tomato. Rice in protein and vitamins. Served with grilled tomato and choice of bread whole wheat and gluten free',
     price: 345,
-    image: getImage('voyage-eggs-4'),
+    image: '', // No image - doesn't match product
     category: 'voyage-eggs',
     isVeggie: false
   },
@@ -193,7 +193,7 @@ export const products: Product[] = [
     name: 'Shakshuka Baked Eggs',
     description: '3 Eggs, grilled vegetable cooked in tomato sauce, fresh herbs, parmesan cheese, served with toasted bread and grilled tomato. Rice in protein and vitamins. Served with grilled tomato and choice of bread whole wheat and gluten free',
     price: 405,
-    image: getImage('voyage-eggs-5'),
+    image: '', // No image - doesn't match product
     category: 'voyage-eggs',
     isVeggie: false
   },
@@ -204,7 +204,7 @@ export const products: Product[] = [
     name: 'Sauteed Spinach Poached Eggs Hollandaise',
     description: '2 Poached eggs, sauteed spinach hollandaise on top served with toasted bread and grilled tomato. Immune boosting or healthy heart or inflammatory or poached eggs topped with hollandaise and choice of bread whole wheat and gluten free',
     price: 375,
-    image: getImage('eggs-benedict-1'),
+    image: '', // No image - doesn't match product
     category: 'eggs-benedict',
     isVeggie: false
   },
@@ -213,7 +213,7 @@ export const products: Product[] = [
     name: 'Chicken Jalapeno and Garlic Hollandaise',
     description: '[Voyage special]. Grilled chicken breast on lettuce, sliced jalapeno hollandaise on top served with toasted bread and grilled tomato. Immune boosting or healthy heart or inflammatory or poached eggs topped with hollandaise and choice of bread whole wheat and gluten free',
     price: 445,
-    image: getImage('eggs-benedict-2'),
+    image: '', // No image - doesn't match product
     category: 'eggs-benedict',
     isVeggie: false
   },
@@ -222,7 +222,7 @@ export const products: Product[] = [
     name: 'Smoked Salmon Cream Capers Hollandaise',
     description: 'Smoked salmon on toast, cream cheese, capers, hollandaise on top served with toasted bread and grilled tomato. Immune boosting or healthy heart or inflammatory or poached eggs topped with hollandaise and choice of bread whole wheat and gluten free',
     price: 785,
-    image: getImage('eggs-benedict-3'),
+    image: '', // No image - doesn't match product
     category: 'eggs-benedict',
     isVeggie: false
   },
@@ -233,7 +233,7 @@ export const products: Product[] = [
     name: 'French Toast with Dates Syrup',
     description: 'Served with dates syrup and cinnamon dust',
     price: 345,
-    image: getImage('all-day-breakfast-1'),
+    image: '', // No image - doesn't match product
     category: 'all-day-breakfast',
     isVeggie: true
   },
@@ -242,7 +242,7 @@ export const products: Product[] = [
     name: 'Classic American Pancakes',
     description: 'Served with maple syrup and sugar dust',
     price: 345,
-    image: getImage('all-day-breakfast-2'),
+    image: '', // No image - doesn't match product
     category: 'all-day-breakfast',
     isVeggie: true
   },
@@ -251,7 +251,7 @@ export const products: Product[] = [
     name: 'Chocolate Banana Pancake',
     description: 'Served with sliced banana, chocolate ganache, roasted nut on top',
     price: 345,
-    image: getImage('all-day-breakfast-3'),
+    image: '', // No image - doesn't match product
     category: 'all-day-breakfast',
     isVeggie: true
   },
@@ -260,7 +260,7 @@ export const products: Product[] = [
     name: 'Nutella Crepes with Roasted Walnut',
     description: 'Vanilla crepes, nutella, banana, roasted hazelnut chunks',
     price: 405,
-    image: getImage('all-day-breakfast-4'),
+    image: '', // No image - doesn't match product
     category: 'all-day-breakfast',
     isVeggie: true
   },
@@ -269,7 +269,7 @@ export const products: Product[] = [
     name: 'Pesto Mushroom Sauteed Spinach Crepes',
     description: 'Inhouse pesto, sauteed herbs mushroom, feta cheese served with inhouse salad and dips',
     price: 405,
-    image: getImage('all-day-breakfast-5'),
+    image: '', // No image - doesn't match product
     category: 'all-day-breakfast',
     isVeggie: true
   },
@@ -280,7 +280,7 @@ export const products: Product[] = [
     name: 'Sauteed Mushroom Goat Cheese and Herbs Ricotta on Toast',
     description: 'Toast, goat cheese, herbs, ricotta spread served with inhouse salad and dips. Served with choice of bread whole wheat and gluten free + voyage salad and homemade dips',
     price: 405,
-    image: getImage('open-toasties-1'),
+    image: '', // No image - doesn't match product
     category: 'open-toasties',
     isVeggie: true
   },
@@ -289,7 +289,7 @@ export const products: Product[] = [
     name: 'Roasted Bell Pepper Pesto Feta Cheese on Toast',
     description: 'Toast, pesto sauce, roasted bell pepper, feta cheese on top served with inhouse salad and dips. Served with choice of bread whole wheat and gluten free + voyage salad and homemade dips',
     price: 405,
-    image: getImage('open-toasties-2'),
+    image: '', // No image - doesn't match product
     category: 'open-toasties',
     isVeggie: true
   },
@@ -298,7 +298,7 @@ export const products: Product[] = [
     name: 'Avocado Guacamole on Toast with Feta Cheese',
     description: 'Toast, crushed avocado, onion, tomato, cilantro, olive oil feta on top served with inhouse salad and dips. Served with choice of bread whole wheat and gluten free + voyage salad and homemade dips',
     price: 655,
-    image: getImage('open-toasties-3'),
+    image: '', // No image - doesn't match product
     category: 'open-toasties',
     isVeggie: true
   },
@@ -307,7 +307,7 @@ export const products: Product[] = [
     name: 'Peri Peri Chicken with 3 Bell Pepper on Toast',
     description: 'Toast, chicken tossed with garlic, onion in creamy peri peri sauce served with inhouse salad and dips. Served with choice of bread whole wheat and gluten free + voyage salad and homemade dips',
     price: 445,
-    image: getImage('open-toasties-4'),
+    image: '', // No image - doesn't match product
     category: 'open-toasties',
     isVeggie: false
   },
@@ -316,7 +316,7 @@ export const products: Product[] = [
     name: 'Creamy Chicken Mayo on Toast',
     description: 'Toast, roasted chicken shredded, green bell pepper, creamy mayo. Served with choice of bread whole wheat and gluten free + voyage salad and homemade dips',
     price: 445,
-    image: getImage('open-toasties-5'),
+    image: '', // No image - doesn't match product
     category: 'open-toasties',
     isVeggie: false
   },
@@ -325,7 +325,7 @@ export const products: Product[] = [
     name: 'Smoked Salmon Cream Cheese on Toast',
     description: 'Toast, spread with cream cheese, lettuce, smoked salmon dill leaves on top served with inhouse salad and dips. Served with choice of bread whole wheat and gluten free + voyage salad and homemade dips',
     price: 785,
-    image: getImage('open-toasties-6'),
+    image: '', // No image - doesn't match product
     category: 'open-toasties',
     isVeggie: false
   },
@@ -336,7 +336,7 @@ export const products: Product[] = [
     name: 'Berry Nutty Bowl',
     description: 'Mix berries, banana, yogurt, fresh fruits and nuts',
     price: 465,
-    image: getImage('smoothie-bowls-1'),
+    image: '', // No image - doesn't match product
     category: 'smoothie-bowls',
     isVeggie: true
   },
@@ -345,7 +345,7 @@ export const products: Product[] = [
     name: 'Mango Mint Banana Bowl',
     description: 'Mango pulp, mint leave, banana, yogurt topped with sliced banana, chia seeds, almond flakes',
     price: 465,
-    image: getImage('smoothie-bowls-2'),
+    image: '', // No image - doesn't match product
     category: 'smoothie-bowls',
     isVeggie: true
   },
@@ -354,7 +354,7 @@ export const products: Product[] = [
     name: 'Chocolate Peanut Butter Bowl',
     description: 'Dark chocolate, banana,, yogurt, peanut butter topped with banana and dry roasted nuts',
     price: 465,
-    image: getImage('smoothie-bowls-3'),
+    image: '', // No image - doesn't match product
     category: 'smoothie-bowls',
     isVeggie: true
   },
@@ -363,7 +363,7 @@ export const products: Product[] = [
     name: 'Blush Breakfast Bowl',
     description: 'Beetroot, pears, banana topped with crushed coconut, walnuts, pumpkin seeds, pineapple, kiwi, chia seeds',
     price: 535,
-    image: getImage('smoothie-bowls-4'),
+    image: '', // No image - doesn't match product
     category: 'smoothie-bowls',
     isVeggie: true
   },
@@ -372,7 +372,7 @@ export const products: Product[] = [
     name: 'Chocolate Nutella Bowl',
     description: 'Dark chocolate, nutella,, yogurt, banana topped with dry roasted nuts and banana',
     price: 535,
-    image: getImage('smoothie-bowls-5'),
+    image: '', // No image - doesn't match product
     category: 'smoothie-bowls',
     isVeggie: true
   },
@@ -381,7 +381,7 @@ export const products: Product[] = [
     name: 'The Voyage Tropical Breakfast Bowl',
     description: 'Spinach, shredded coconuts, dates, banana, watermelon, muskmelon, sunflower seeds, pomegranate, apricots',
     price: 535,
-    image: getImage('smoothie-bowls-6'),
+    image: '', // No image - doesn't match product
     category: 'smoothie-bowls',
     isVeggie: true
   },
@@ -390,7 +390,7 @@ export const products: Product[] = [
     name: 'The Green Booster',
     description: '[Voyage special]. Kiwi, spinach, green apple, pista, banana served with roasted coconut flakes and chia seeds',
     price: 535,
-    image: getImage('smoothie-bowls-7'),
+    image: '', // No image - doesn't match product
     category: 'smoothie-bowls',
     isVeggie: true
   },
@@ -401,7 +401,7 @@ export const products: Product[] = [
     name: 'Classic French Fries',
     description: 'Golden french fries sprinkled with salt served with tomato ketchup',
     price: 215,
-    image: getImage('appetizing-morsels-1'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: true
   },
@@ -410,7 +410,7 @@ export const products: Product[] = [
     name: 'Peri Peri French Fries',
     description: 'Golden french fries sprinkled with peri peri spiced salt served with thousand sauce',
     price: 275,
-    image: getImage('appetizing-morsels-2'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: true
   },
@@ -419,7 +419,7 @@ export const products: Product[] = [
     name: 'Masala French Fries with Thousand Sauce',
     description: 'Coated fries with fresh herbs and dried herbs served with garlic chipotle sauce',
     price: 345,
-    image: getImage('appetizing-morsels-3'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: true
   },
@@ -428,7 +428,7 @@ export const products: Product[] = [
     name: 'Brown Potato Wedges Fresh Herbs',
     description: 'Home made potato wedges marinated with herbs served with tomato ketchup',
     price: 345,
-    image: getImage('appetizing-morsels-4'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: true
   },
@@ -437,7 +437,7 @@ export const products: Product[] = [
     name: 'Cheese Corn Balls',
     description: '[Voyage special]. Monterey jack cheese, american corn seasoned with herbs served with thousand sauce',
     price: 345,
-    image: getImage('appetizing-morsels-5'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: true
   },
@@ -446,7 +446,7 @@ export const products: Product[] = [
     name: 'Cheese Jalapeno Cigars',
     description: '[Voyage special]. Monterey jack cheese, potato, jalapeno, seasoned with herbs served with garlic mayonnaise',
     price: 365,
-    image: getImage('appetizing-morsels-6'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: true
   },
@@ -455,7 +455,7 @@ export const products: Product[] = [
     name: 'Garlic Bread',
     description: 'Crispy toasted bread with garlic butter',
     price: 195,
-    image: getImage('appetizing-morsels-7'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: true
   },
@@ -464,7 +464,7 @@ export const products: Product[] = [
     name: 'Cheese Garlic Bread',
     description: 'Crispy toasted bread with garlic butter topped with mozzarella cheese',
     price: 275,
-    image: getImage('appetizing-morsels-8'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: true
   },
@@ -473,7 +473,7 @@ export const products: Product[] = [
     name: 'Nachos with Cheese Sauce',
     description: 'Homemade tortillas chips, topped with monterey jack cheese served with salsa sauce',
     price: 405,
-    image: getImage('appetizing-morsels-9'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: true
   },
@@ -482,7 +482,7 @@ export const products: Product[] = [
     name: 'Veg The Voyage Nachos Overloaded',
     description: 'Homemade tortillas topped with monterey jack cheese, refried beans, capsicum jalapeno served with salsa sauce',
     price: 465,
-    image: getImage('appetizing-morsels-10'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: true
   },
@@ -491,7 +491,7 @@ export const products: Product[] = [
     name: 'Veg Tacos',
     description: 'Crispy shell, purple cabbage, refried beans, corn, paneer, cream cheese served with salsa',
     price: 405,
-    image: getImage('appetizing-morsels-11'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: true
   },
@@ -500,7 +500,7 @@ export const products: Product[] = [
     name: 'Chicken Tacos',
     description: 'Crispy shell, purple cabbage, refried beans, corn, paneer, cream cheese served with salsa',
     price: 535,
-    image: getImage('appetizing-morsels-12'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: false
   },
@@ -509,7 +509,7 @@ export const products: Product[] = [
     name: 'Bruschetta Al Pomodoro',
     description: 'Crispy toasted bread topped with fresh tomato, basil, herbs, drizzled with olive oil',
     price: 445,
-    image: getImage('appetizing-morsels-13'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: true
   },
@@ -518,7 +518,7 @@ export const products: Product[] = [
     name: 'Mushroom Crostini with Arugula',
     description: 'Crispy toasted bread topped with sauteed garlic, mushroom, parmesan cheese',
     price: 445,
-    image: getImage('appetizing-morsels-14'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: true
   },
@@ -527,7 +527,7 @@ export const products: Product[] = [
     name: 'Stuffed Cheese Mushroom',
     description: 'Bottom mushroom, stuffed cheese, bell pepper, garlic, herbs fried served with thousand sauce',
     price: 445,
-    image: getImage('appetizing-morsels-15'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: true
   },
@@ -536,7 +536,7 @@ export const products: Product[] = [
     name: 'Tossed Paneer Burnt Garlic',
     description: 'Diced cut paneer tossed with garlic, onion, capsicum in soy sauce',
     price: 445,
-    image: getImage('appetizing-morsels-16'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: true
   },
@@ -545,7 +545,7 @@ export const products: Product[] = [
     name: 'Chicken with Lemon Pepper Sauce',
     description: 'Diced cut chicken tossed with garlic, onion, capsicum in lemon pepper sauce',
     price: 465,
-    image: getImage('appetizing-morsels-17'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: false
   },
@@ -554,7 +554,7 @@ export const products: Product[] = [
     name: 'Spicy Bbq Chicken Wings',
     description: 'Chicken wings tossed with smokey bbq and pepper sauce',
     price: 465,
-    image: getImage('appetizing-morsels-18'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: false
   },
@@ -563,7 +563,7 @@ export const products: Product[] = [
     name: 'Peri Peri Chicken Wings',
     description: 'Chicken wings tossed with smokey bbq and pepper sauce',
     price: 465,
-    image: getImage('appetizing-morsels-19'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: false
   },
@@ -572,7 +572,7 @@ export const products: Product[] = [
     name: 'Oriental Style Chicken',
     description: 'Crispy fried chicken sprinkled with peri peri spiced served garlic mayonnaise sauce',
     price: 465,
-    image: getImage('appetizing-morsels-20'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: false
   },
@@ -581,7 +581,7 @@ export const products: Product[] = [
     name: 'Devil Paneer',
     description: 'Basil, tomato, 3b bell pepper, onion, spicy paneer',
     price: 365,
-    image: getImage('appetizing-morsels-21'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: true
   },
@@ -590,7 +590,7 @@ export const products: Product[] = [
     name: 'Devil Chicken',
     description: 'Basil, tomato, 3b bell pepper, onion, spicy chicken',
     price: 465,
-    image: getImage('appetizing-morsels-22'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: false
   },
@@ -599,7 +599,7 @@ export const products: Product[] = [
     name: 'Chicken Satay with Peanut Brown Chilly Sauce',
     description: 'Boneless chicken cooked slowly on the griller and topped with peanut and brown chilli sauce',
     price: 465,
-    image: getImage('appetizing-morsels-23'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: false
   },
@@ -608,7 +608,7 @@ export const products: Product[] = [
     name: 'Cilantro Chicken Wings',
     description: 'Chicken wings cooked slowly on the griller in cilantro sauce',
     price: 465,
-    image: getImage('appetizing-morsels-24'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: false
   },
@@ -617,7 +617,7 @@ export const products: Product[] = [
     name: 'The Basil Chicken',
     description: 'Minced chicken, garlic, thai basil, soy sauce whisked together to flavour the recipe',
     price: 535,
-    image: getImage('appetizing-morsels-25'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: false
   },
@@ -626,7 +626,7 @@ export const products: Product[] = [
     name: 'Lemon Butter Garlic Prawns',
     description: 'Fresh prawns marinated with garlic and herbs toast with in lemon butter sauce',
     price: 655,
-    image: getImage('appetizing-morsels-26'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: false
   },
@@ -635,7 +635,7 @@ export const products: Product[] = [
     name: 'Crispy Prawns with Thousand Island Sauce',
     description: 'Fresh prawns marinated with herbs, lime juice, eggs white fried and served with thousand sauce',
     price: 655,
-    image: getImage('appetizing-morsels-27'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: false
   },
@@ -644,7 +644,7 @@ export const products: Product[] = [
     name: 'Chicken The Voyage Nachos Overloaded',
     description: 'Homemade tortillas topped with monterey jack cheese, refried beans, capsicum jalapeno served with salsa sauce',
     price: 535,
-    image: getImage('appetizing-morsels-28'),
+    image: '', // No image - doesn't match product
     category: 'appetizing-morsels',
     isVeggie: false
   },
@@ -655,7 +655,7 @@ export const products: Product[] = [
     name: 'Grilled Vegetable Spicy Jalapeno',
     description: '[Voyage special]. Grilled broccoli, bellpepper, zucchini, black olives, jalapeno served with inhouse salad and wafers. Served with a choice of bread whole wheat and gluten free + voyage salad and homemade dips',
     price: 445,
-    image: getImage('panini-sandwiches-1'),
+    image: '', // No image - doesn't match product
     category: 'panini-sandwiches',
     isVeggie: true
   },
@@ -664,7 +664,7 @@ export const products: Product[] = [
     name: 'Paneer Pesto Bell Pepper',
     description: 'Inhouse pesto, onion, bellepper, cottage cheese served with salads and wafers. Served with a choice of bread whole wheat and gluten free + voyage salad and homemade dips',
     price: 445,
-    image: getImage('panini-sandwiches-2'),
+    image: '', // No image - doesn't match product
     category: 'panini-sandwiches',
     isVeggie: true
   },
@@ -673,7 +673,7 @@ export const products: Product[] = [
     name: 'Corn Mushroom Spinach',
     description: 'Spinach, corn, mushroom, onion rings, capsicum rings, creamy cheese sauce served with salads and wafers. Served with a choice of bread whole wheat and gluten free + voyage salad and homemade dips',
     price: 445,
-    image: getImage('panini-sandwiches-3'),
+    image: '', // No image - doesn't match product
     category: 'panini-sandwiches',
     isVeggie: true
   },
@@ -682,7 +682,7 @@ export const products: Product[] = [
     name: 'Creamy Chicken Mayo',
     description: 'Roasted chicken shreds, green bell pepper in a rich creamy dressing served with salads and wafers. Served with a choice of bread whole wheat and gluten free + voyage salad and homemade dips',
     price: 445,
-    image: getImage('panini-sandwiches-4'),
+    image: '', // No image - doesn't match product
     category: 'panini-sandwiches',
     isVeggie: false
   },
@@ -691,7 +691,7 @@ export const products: Product[] = [
     name: 'Paneer Fajita',
     description: 'Paneer toasted in cajun spice, onion, 3b bell pepper, lettuce, cheese sauce served with salads and wafers. Served with a choice of bread whole wheat and gluten free + voyage salad and homemade dips',
     price: 465,
-    image: getImage('panini-sandwiches-5'),
+    image: '', // No image - doesn't match product
     category: 'panini-sandwiches',
     isVeggie: true
   },
@@ -700,7 +700,7 @@ export const products: Product[] = [
     name: 'Caramelized Onion Bbq Chicken',
     description: 'Chicken tossed with caramelized onion, garlic,bell pepper in bbq sauce served with salad and wafers. Served with a choice of bread whole wheat and gluten free + voyage salad and homemade dips',
     price: 465,
-    image: getImage('panini-sandwiches-6'),
+    image: '', // No image - doesn't match product
     category: 'panini-sandwiches',
     isVeggie: false
   },
@@ -709,7 +709,7 @@ export const products: Product[] = [
     name: 'The Voyage Banh Mi',
     description: 'Spicy minced veg patty, carrot, cucumber, tomato, mint, coriander sauce served with salad and wafers. Served with a choice of bread whole wheat and gluten free + voyage salad and homemade dips',
     price: 505,
-    image: getImage('panini-sandwiches-7'),
+    image: '', // No image - doesn't match product
     category: 'panini-sandwiches',
     isVeggie: true
   },
@@ -720,7 +720,7 @@ export const products: Product[] = [
     name: 'Beetroot and Spinach Burger',
     description: 'Beetroot, spinach, quinoa base patty, caramelized onion, cucumber and mint yogurt sauce. Served with a choice of bread whole wheat and gluten free + voyage salad + fries and homemade dips',
     price: 405,
-    image: getImage('burgers-1'),
+    image: '', // No image - doesn't match product
     category: 'burgers',
     isVeggie: true
   },
@@ -729,7 +729,7 @@ export const products: Product[] = [
     name: 'Crunchy Veg and Cheese Burger',
     description: 'Inhouse mix veg patty, cheese, tomato, onion, lettuce. Served with a choice of bread whole wheat and gluten free + voyage salad + fries and homemade dips',
     price: 405,
-    image: getImage('burgers-2'),
+    image: '', // No image - doesn't match product
     category: 'burgers',
     isVeggie: true
   },
@@ -738,7 +738,7 @@ export const products: Product[] = [
     name: 'Fried Grilled Paneer Burger',
     description: 'Grilled paneer in spicy sauce, cheese, lettuce, peri-peri sauce, onion, cucumber served with fries. Served with a choice of bread whole wheat and gluten free + voyage salad + fries and homemade dips',
     price: 445,
-    image: getImage('burgers-3'),
+    image: '', // No image - doesn't match product
     category: 'burgers',
     isVeggie: true
   },
@@ -747,7 +747,7 @@ export const products: Product[] = [
     name: 'Chicken Barbeque Burger',
     description: 'Homemade chicken patties, lettuce, bbq sauce, onion, cucumber served with fries. Served with a choice of bread whole wheat and gluten free + voyage salad + fries and homemade dips',
     price: 465,
-    image: getImage('burgers-4'),
+    image: '', // No image - doesn't match product
     category: 'burgers',
     isVeggie: false
   },
@@ -756,7 +756,7 @@ export const products: Product[] = [
     name: 'Grilled Chicken Burger',
     description: 'Grilled chicken patty grilled and served with spicy sauce, sliced cheese, tomato, onion, capsicum, mint mayonnaise. Served with a choice of bread whole wheat and gluten free + voyage salad + fries and homemade dips',
     price: 465,
-    image: getImage('burgers-5'),
+    image: '', // No image - doesn't match product
     category: 'burgers',
     isVeggie: false
   },
@@ -765,7 +765,7 @@ export const products: Product[] = [
     name: 'Cheese Hamburger Stuck',
     description: 'Minced chicken patty, mozzarella cheese, spicy sriracha sauce served with broccoli, cherry, tomato and potato veggies. Served with a choice of bread whole wheat and gluten free + voyage salad + fries and homemade dips',
     price: 495,
-    image: getImage('burgers-6'),
+    image: '', // No image - doesn't match product
     category: 'burgers',
     isVeggie: false
   },
@@ -774,7 +774,7 @@ export const products: Product[] = [
     name: 'Loaded Patty Chicken Burger',
     description: '[Voyage special]. Tender and juicy homemade chicken patty cooked to drenched with a double cheese layer and creamy mayo. Served with a choice of bread whole wheat and gluten free + voyage salad + fries and homemade dips',
     price: 535,
-    image: getImage('burgers-7'),
+    image: '', // No image - doesn't match product
     category: 'burgers',
     isVeggie: false
   },
@@ -785,7 +785,7 @@ export const products: Product[] = [
     name: 'Cream of Tomato Basil Soup',
     description: '[Voyage special]. Rich in vitamin c, tomato soup with fresh parsley served with crunchy croutons',
     price: 215,
-    image: getImage('homemade-soups-1'),
+    image: '', // No image - doesn't match product
     category: 'homemade-soups',
     isVeggie: true
   },
@@ -794,7 +794,7 @@ export const products: Product[] = [
     name: 'Cream of Mushroom and Rosemary',
     description: 'Rich in fibre, antioxidants and low in calorie, a blend of mushroom and rosemary',
     price: 215,
-    image: getImage('homemade-soups-2'),
+    image: '', // No image - doesn't match product
     category: 'homemade-soups',
     isVeggie: true
   },
@@ -803,7 +803,7 @@ export const products: Product[] = [
     name: 'Broccoli and Green Peas Soup',
     description: '[Voyage special]. Rich in folate, potassium, blend of broccoli and green peas paste cooked with fresh cream',
     price: 215,
-    image: getImage('homemade-soups-3'),
+    image: '', // No image - doesn't match product
     category: 'homemade-soups',
     isVeggie: true
   },
@@ -812,7 +812,7 @@ export const products: Product[] = [
     name: 'Roasted Pumpkin and Carrot Soup',
     description: 'Rich in copper, manganese, roasted pumpkin tempered with garlic and cooked with fresh cream',
     price: 215,
-    image: getImage('homemade-soups-4'),
+    image: '', // No image - doesn't match product
     category: 'homemade-soups',
     isVeggie: true
   },
@@ -821,7 +821,7 @@ export const products: Product[] = [
     name: 'Cream of Chicken Soup',
     description: 'Rich in aminos, a classic cream of chicken soup',
     price: 245,
-    image: getImage('homemade-soups-5'),
+    image: '', // No image - doesn't match product
     category: 'homemade-soups',
     isVeggie: false
   },
@@ -830,7 +830,7 @@ export const products: Product[] = [
     name: 'Chicken Clear with Fresh Basil Soup',
     description: '[Voyage special]. Rich in aminos and antioxidants, chicken chunks cooked in chicken broth infused with fresh basil',
     price: 245,
-    image: getImage('homemade-soups-6'),
+    image: '', // No image - doesn't match product
     category: 'homemade-soups',
     isVeggie: false
   },
@@ -841,7 +841,7 @@ export const products: Product[] = [
     name: 'Roasted Beet Orange Quinoa Salad with Feta',
     description: '[Voyage special]. Mixed lettuce, orange sliced, quinoa, mix seeds dressed with orange reduction and balsamic vinaigrette dressing garnish with feta cheese',
     price: 405,
-    image: getImage('farm-fresh-salads-1'),
+    image: '', // No image - doesn't match product
     category: 'farm-fresh-salads',
     isVeggie: true
   },
@@ -850,7 +850,7 @@ export const products: Product[] = [
     name: 'Watermelon Feta with Rocket Leaves',
     description: 'Diced cut watermelon, rucola leaves dressing with honey mustard, scrambled feta on top balsamic vinegar',
     price: 405,
-    image: getImage('farm-fresh-salads-2'),
+    image: '', // No image - doesn't match product
     category: 'farm-fresh-salads',
     isVeggie: true
   },
@@ -859,7 +859,7 @@ export const products: Product[] = [
     name: 'Classic Caesar Salad',
     description: 'Tender lettuce leaves, black olives, roasted croutons dressed with mayonnaise and sprinkled with parmesan cheese',
     price: 405,
-    image: getImage('farm-fresh-salads-3'),
+    image: '', // No image - doesn't match product
     category: 'farm-fresh-salads',
     isVeggie: true
   },
@@ -868,7 +868,7 @@ export const products: Product[] = [
     name: 'Green Apple Spinach Walnut Salad',
     description: 'Sliced green apple, baby spinach, mix lettuce dressed with cranberry vinaigrette dressing topped with parmesan cheese',
     price: 465,
-    image: getImage('farm-fresh-salads-4'),
+    image: '', // No image - doesn't match product
     category: 'farm-fresh-salads',
     isVeggie: true
   },
@@ -877,7 +877,7 @@ export const products: Product[] = [
     name: 'Chicken Caesar Salad',
     description: 'Tender lettuce leaves, finger chicken, black olives, roasted croutons dressed with mayonnaise and sprinkled with parmesan cheese',
     price: 465,
-    image: getImage('farm-fresh-salads-5'),
+    image: '', // No image - doesn't match product
     category: 'farm-fresh-salads',
     isVeggie: false
   },
@@ -886,7 +886,7 @@ export const products: Product[] = [
     name: 'Grilled Chicken Warm Vegetable Tossed Salad',
     description: 'Diced cut grilled chicken, grilled vegetable tossed with pineapple balsamic vinaigrette dressing',
     price: 465,
-    image: getImage('farm-fresh-salads-6'),
+    image: '', // No image - doesn't match product
     category: 'farm-fresh-salads',
     isVeggie: false
   },
@@ -897,7 +897,7 @@ export const products: Product[] = [
     name: 'Classic Margherita Pizza',
     description: 'Fresh tomato sauce, mozzarella, fresh basil. Fresh dough hand stretched to order, topped with our house made tomato sauce and mozzarella',
     price: 405,
-    image: getImage('thin-crust-pizza-1'),
+    image: '', // No image - doesn't match product
     category: 'thin-crust-pizza',
     isVeggie: true
   },
@@ -906,7 +906,7 @@ export const products: Product[] = [
     name: 'Corn Capsicum Jalapeno Pizza',
     description: 'Fresh tomato sauce, mozzarella cheese, green capsicum, sweet corn, onion and jalapeno. Fresh dough hand stretched to order, topped with our house made tomato sauce and mozzarella',
     price: 465,
-    image: getImage('thin-crust-pizza-2'),
+    image: '', // No image - doesn't match product
     category: 'thin-crust-pizza',
     isVeggie: true
   },
@@ -915,7 +915,7 @@ export const products: Product[] = [
     name: 'Ultimate Pizza',
     description: 'Fresh tomato sauce, mozzarella, paneer, green capsicum, black olives, oregano. Fresh dough hand stretched to order, topped with our house made tomato sauce and mozzarella',
     price: 465,
-    image: getImage('thin-crust-pizza-3'),
+    image: '', // No image - doesn't match product
     category: 'thin-crust-pizza',
     isVeggie: true
   },
@@ -924,7 +924,7 @@ export const products: Product[] = [
     name: 'Mushroom Delight Pizza',
     description: 'Spicy tomato sauce, mozzarella cheese, pickle onion, olives, sundried tomato mushrooms. Fresh dough hand stretched to order, topped with our house made tomato sauce and mozzarella',
     price: 535,
-    image: getImage('thin-crust-pizza-4'),
+    image: '', // No image - doesn't match product
     category: 'thin-crust-pizza',
     isVeggie: true
   },
@@ -933,7 +933,7 @@ export const products: Product[] = [
     name: 'Pizza Mexicano',
     description: 'Spicy tomato sauce, capsicum, mushrooms, refried beans, onion, mozzarella. Fresh dough hand stretched to order, topped with our house made tomato sauce and mozzarella',
     price: 535,
-    image: getImage('thin-crust-pizza-5'),
+    image: '', // No image - doesn't match product
     category: 'thin-crust-pizza',
     isVeggie: true
   },
@@ -942,7 +942,7 @@ export const products: Product[] = [
     name: 'Pizza Melino',
     description: '[Voyage special]. Fresh tomato sauce, mozzarella cheese, spinach, mushroom, bell pepper, jalapeno, capsicum and olives. Fresh dough hand stretched to order, topped with our house made tomato sauce and mozzarella',
     price: 555,
-    image: getImage('thin-crust-pizza-6'),
+    image: '', // No image - doesn't match product
     category: 'thin-crust-pizza',
     isVeggie: true
   },
@@ -951,7 +951,7 @@ export const products: Product[] = [
     name: 'Paneer Tikka Pizza',
     description: 'Spicy tomato sauce, mozzarella, indian spiced paneer, onion, capsicum, coriander. Fresh dough hand stretched to order, topped with our house made tomato sauce and mozzarella',
     price: 555,
-    image: getImage('thin-crust-pizza-7'),
+    image: '', // No image - doesn't match product
     category: 'thin-crust-pizza',
     isVeggie: true
   },
@@ -960,7 +960,7 @@ export const products: Product[] = [
     name: 'Pesto Chicken Pizza',
     description: 'In house pesto sauce, mozzarella cheese, chicken, black olives. Fresh dough hand stretched to order, topped with our house made tomato sauce and mozzarella',
     price: 565,
-    image: getImage('thin-crust-pizza-8'),
+    image: '', // No image - doesn't match product
     category: 'thin-crust-pizza',
     isVeggie: false
   },
@@ -969,7 +969,7 @@ export const products: Product[] = [
     name: 'Chicken Tikka and Herbs Pizza',
     description: 'Spicy tomato sauce, mozzarella, mushrooms, garlic, fresh basil, tandoori spiced chicken. Fresh dough hand stretched to order, topped with our house made tomato sauce and mozzarella',
     price: 615,
-    image: getImage('thin-crust-pizza-9'),
+    image: '', // No image - doesn't match product
     category: 'thin-crust-pizza',
     isVeggie: false
   },
@@ -978,7 +978,7 @@ export const products: Product[] = [
     name: 'Smoky Barbeque Chicken Pizza',
     description: '[Voyage special]. Smokey barbeque sauce, mozzarella, bell pepper, cube chicken marinated in barbeque sauce. Fresh dough hand stretched to order, topped with our house made tomato sauce and mozzarella',
     price: 615,
-    image: getImage('thin-crust-pizza-10'),
+    image: '', // No image - doesn't match product
     category: 'thin-crust-pizza',
     isVeggie: false
   },
@@ -989,7 +989,7 @@ export const products: Product[] = [
     name: 'Veg Arrabiata Pasta',
     description: 'Fresh tomato sauce, garlic, paprika and parsley',
     price: 405,
-    image: getImage('veg-pasta-1'),
+    image: '', // No image - doesn't match product
     category: 'veg-pasta',
     isVeggie: true
   },
@@ -998,7 +998,7 @@ export const products: Product[] = [
     name: 'Veg Aglio Olio E Peperoncino Pasta',
     description: 'Dry pasta tossed in olive oil classic sauce with garlic, olive oil, red paprika and parsley',
     price: 405,
-    image: getImage('veg-pasta-2'),
+    image: '', // No image - doesn't match product
     category: 'veg-pasta',
     isVeggie: true
   },
@@ -1007,7 +1007,7 @@ export const products: Product[] = [
     name: 'Veg Creamy Alfredo Pasta',
     description: 'Fresh home cream sauce with garlic, olive oil, chilli flakes and parsley',
     price: 445,
-    image: getImage('veg-pasta-3'),
+    image: '', // No image - doesn't match product
     category: 'veg-pasta',
     isVeggie: true
   },
@@ -1016,7 +1016,7 @@ export const products: Product[] = [
     name: 'Veg Pesto Alla Genovese Pasta',
     description: 'Fresh basil crushed with garlic, pine nuts, olive oil and cheese',
     price: 465,
-    image: getImage('veg-pasta-4'),
+    image: '', // No image - doesn't match product
     category: 'veg-pasta',
     isVeggie: true
   },
@@ -1025,7 +1025,7 @@ export const products: Product[] = [
     name: 'Veg Cream Sauce Pasta with Corn and Bell Pepper',
     description: 'Simply delicious cream sauce pasta tempered with fresh garlic, paprika, corn, parsley sprinkled with parmesan cheese',
     price: 465,
-    image: getImage('veg-pasta-5'),
+    image: '', // No image - doesn't match product
     category: 'veg-pasta',
     isVeggie: true
   },
@@ -1034,7 +1034,7 @@ export const products: Product[] = [
     name: 'Veg Pink Sauce Pasta',
     description: 'A classic noble sauce with bechamel, tomato sauce red paprika and parmesan cheese',
     price: 495,
-    image: getImage('veg-pasta-6'),
+    image: '', // No image - doesn't match product
     category: 'veg-pasta',
     isVeggie: true
   },
@@ -1043,7 +1043,7 @@ export const products: Product[] = [
     name: 'Veg Pasta Saporita',
     description: '[Voyage special]. Creamy sauce with fresh broccoli, chopped tomatoes, garlic, parsley, sun dried tomatoes, parmesan cheese and chili paper',
     price: 495,
-    image: getImage('veg-pasta-7'),
+    image: '', // No image - doesn't match product
     category: 'veg-pasta',
     isVeggie: true
   },
@@ -1052,7 +1052,7 @@ export const products: Product[] = [
     name: 'Veg Pasta Del Italiana',
     description: 'Fresh homemade tomato sauce, onion, garlic, capers, red yellow capsicum, olives, parsley, mushroom, olive oil',
     price: 495,
-    image: getImage('veg-pasta-8'),
+    image: '', // No image - doesn't match product
     category: 'veg-pasta',
     isVeggie: true
   },
@@ -1061,7 +1061,7 @@ export const products: Product[] = [
     name: 'Veg Pasta Con Verdure',
     description: 'A creamy sauce with oregano, rosemary, fresh basil, dry basil, parsley, chili flakes, red yellow green pepper, corn, broccoli, baby corn, carrot, and beans',
     price: 565,
-    image: getImage('veg-pasta-9'),
+    image: '', // No image - doesn't match product
     category: 'veg-pasta',
     isVeggie: true
   },
@@ -1072,7 +1072,7 @@ export const products: Product[] = [
     name: 'Non Veg Arrabiata Pasta',
     description: 'Fresh tomato sauce, garlic, paprika and parsley',
     price: 495,
-    image: getImage('non-veg-pasta-1'),
+    image: '', // No image - doesn't match product
     category: 'non-veg-pasta',
     isVeggie: false
   },
@@ -1081,7 +1081,7 @@ export const products: Product[] = [
     name: 'Non Veg Aglio Olio E Peperoncino Pasta',
     description: 'Dry pasta tossed in olive oil classic sauce with garlic, olive oil, red paprika and parsley',
     price: 495,
-    image: getImage('non-veg-pasta-2'),
+    image: '', // No image - doesn't match product
     category: 'non-veg-pasta',
     isVeggie: false
   },
@@ -1090,7 +1090,7 @@ export const products: Product[] = [
     name: 'Non Veg Creamy Alfredo Pasta',
     description: 'Fresh home cream sauce with garlic, olive oil, chilli flakes and parsley',
     price: 535,
-    image: getImage('non-veg-pasta-3'),
+    image: '', // No image - doesn't match product
     category: 'non-veg-pasta',
     isVeggie: false
   },
@@ -1099,7 +1099,7 @@ export const products: Product[] = [
     name: 'Non Veg Pesto Alla Genovese Pasta',
     description: 'Fresh basil crushed with garlic, pine nuts, olive oil and cheese',
     price: 565,
-    image: getImage('non-veg-pasta-4'),
+    image: '', // No image - doesn't match product
     category: 'non-veg-pasta',
     isVeggie: false
   },
@@ -1108,7 +1108,7 @@ export const products: Product[] = [
     name: 'Non Veg Cream Sauce Pasta with Corn and Bell Pepper',
     description: 'Simply delicious cream sauce pasta tempered with fresh garlic, paprika, corn, parsley sprinkled with parmesan cheese',
     price: 565,
-    image: getImage('non-veg-pasta-5'),
+    image: '', // No image - doesn't match product
     category: 'non-veg-pasta',
     isVeggie: false
   },
@@ -1117,7 +1117,7 @@ export const products: Product[] = [
     name: 'Non Veg Pink Sauce Pasta',
     description: 'A classic noble sauce with bechamel, tomato sauce red paprika and parmesan cheese',
     price: 565,
-    image: getImage('non-veg-pasta-6'),
+    image: '', // No image - doesn't match product
     category: 'non-veg-pasta',
     isVeggie: false
   },
@@ -1126,7 +1126,7 @@ export const products: Product[] = [
     name: 'Non Veg Pasta Saporita',
     description: '[Voyage special]. Creamy sauce with fresh broccoli, chopped tomatoes, garlic, parsley, sun dried tomatoes, parmesan cheese and chili paper',
     price: 595,
-    image: getImage('non-veg-pasta-7'),
+    image: '', // No image - doesn't match product
     category: 'non-veg-pasta',
     isVeggie: false
   },
@@ -1135,7 +1135,7 @@ export const products: Product[] = [
     name: 'Non Veg Pasta Del Italiana',
     description: 'Fresh homemade tomato sauce, onion, garlic, capers, red yellow capsicum, olives, parsley, mushroom, olive oil',
     price: 575,
-    image: getImage('non-veg-pasta-8'),
+    image: '', // No image - doesn't match product
     category: 'non-veg-pasta',
     isVeggie: false
   },
@@ -1144,7 +1144,7 @@ export const products: Product[] = [
     name: 'Non Veg Pasta Con Verdure',
     description: 'A creamy sauce with oregano, rosemary, fresh basil, dry basil, parsley, chili flakes, red yellow green pepper, corn, broccoli, baby corn, carrot, and beans',
     price: 655,
-    image: getImage('non-veg-pasta-9'),
+    image: '', // No image - doesn't match product
     category: 'non-veg-pasta',
     isVeggie: false
   },
@@ -1155,7 +1155,7 @@ export const products: Product[] = [
     name: 'Veg Mexican Bowl',
     description: '[Voyage special]. Burrito rice served with refried beans, corn, sour cream , tortillas chips and salsa',
     price: 535,
-    image: getImage('meal-bowls-4'),
+    image: '', // No image - doesn't match product
     category: 'meal-bowls',
     isVeggie: true
   },
@@ -1164,7 +1164,7 @@ export const products: Product[] = [
     name: 'Veg Thai Curry',
     description: 'Served with basil rice',
     price: 465,
-    image: getImage('meal-bowls-6'),
+    image: '', // No image - doesn't match product
     category: 'meal-bowls',
     isVeggie: true
   },
@@ -1173,7 +1173,7 @@ export const products: Product[] = [
     name: 'Chicken Thai Curry',
     description: 'Served with basil rice',
     price: 535,
-    image: getImage('meal-bowls-7'),
+    image: '', // No image - doesn't match product
     category: 'meal-bowls',
     isVeggie: false
   },
@@ -1182,7 +1182,7 @@ export const products: Product[] = [
     name: 'Chicken Mexican Bowl',
     description: '[Voyage special]. Burrito rice served with refried beans, corn, sour cream , tortillas chips and salsa',
     price: 595,
-    image: getImage('meal-bowls-8'),
+    image: '', // No image - doesn't match product
     category: 'meal-bowls',
     isVeggie: false
   },
@@ -1191,7 +1191,7 @@ export const products: Product[] = [
     name: 'Veg Hakka Noodles with Paneer',
     description: '',
     price: 465,
-    image: getImage('meal-bowls-1'),
+    image: '', // No image - doesn't match product
     category: 'meal-bowls',
     isVeggie: true
   },
@@ -1200,7 +1200,7 @@ export const products: Product[] = [
     name: 'Burnt Garlic Noodles with Paneer',
     description: '',
     price: 465,
-    image: getImage('meal-bowls-2'),
+    image: '', // No image - doesn't match product
     category: 'meal-bowls',
     isVeggie: true
   },
@@ -1209,7 +1209,7 @@ export const products: Product[] = [
     name: 'Paneer Thick Gravy with Steam Rice',
     description: '',
     price: 495,
-    image: getImage('meal-bowls-3'),
+    image: '', // No image - doesn't match product
     category: 'meal-bowls',
     isVeggie: true
   },
@@ -1218,7 +1218,7 @@ export const products: Product[] = [
     name: 'Burnt Garlic Noodles with Chicken in Schezwan Sauce',
     description: '',
     price: 535,
-    image: getImage('meal-bowls-5'),
+    image: '', // No image - doesn't match product
     category: 'meal-bowls',
     isVeggie: false
   },
@@ -1227,7 +1227,7 @@ export const products: Product[] = [
     name: 'Veg Manchurian with Roasted Garlic Cilantro Rice Bowl',
     description: '',
     price: 465,
-    image: getImage('meal-bowls-9'),
+    image: '', // No image - doesn't match product
     category: 'meal-bowls',
     isVeggie: true
   },
@@ -1236,7 +1236,7 @@ export const products: Product[] = [
     name: 'Stuffed Veg Mushroom Black Pepper Sauce with Veg Fried Rice',
     description: '',
     price: 465,
-    image: getImage('meal-bowls-10'),
+    image: '', // No image - doesn't match product
     category: 'meal-bowls',
     isVeggie: true
   },
@@ -1245,7 +1245,7 @@ export const products: Product[] = [
     name: 'Paneer Soya Chilli Sauce with Burnt Garlic Fried Rice',
     description: '',
     price: 495,
-    image: getImage('meal-bowls-11'),
+    image: '', // No image - doesn't match product
     category: 'meal-bowls',
     isVeggie: true
   },
@@ -1254,7 +1254,7 @@ export const products: Product[] = [
     name: 'Chicken Oriental Sauce with 3 Bell Pepper Fried Rice',
     description: '',
     price: 535,
-    image: getImage('meal-bowls-12'),
+    image: '', // No image - doesn't match product
     category: 'meal-bowls',
     isVeggie: false
   },
@@ -1263,7 +1263,7 @@ export const products: Product[] = [
     name: 'Chicken Dhaba Style Curry with Ghee Rice',
     description: '',
     price: 535,
-    image: getImage('meal-bowls-13'),
+    image: '', // No image - doesn't match product
     category: 'meal-bowls',
     isVeggie: false
   },
@@ -1272,7 +1272,7 @@ export const products: Product[] = [
     name: 'Prawns Curry with Coriander Rice',
     description: '',
     price: 695,
-    image: getImage('meal-bowls-14'),
+    image: '', // No image - doesn't match product
     category: 'meal-bowls',
     isVeggie: false
   },
@@ -1281,7 +1281,7 @@ export const products: Product[] = [
     name: 'Prawns Hot and Garlic Sauce with Butter Parsley Rice',
     description: '',
     price: 695,
-    image: getImage('meal-bowls-15'),
+    image: '', // No image - doesn't match product
     category: 'meal-bowls',
     isVeggie: false
   },
@@ -1290,7 +1290,7 @@ export const products: Product[] = [
     name: 'Chicken Hakka Noodles Hot and Garlic Sauce',
     description: '',
     price: 535,
-    image: getImage('meal-bowls-16'),
+    image: '', // No image - doesn't match product
     category: 'meal-bowls',
     isVeggie: false
   },
@@ -1301,7 +1301,7 @@ export const products: Product[] = [
     name: 'Paneer Shashlik Peri Peri Peanut Sauce with Herbs Rice',
     description: '',
     price: 535,
-    image: getImage('voyage-steaks-1'),
+    image: '', // No image - doesn't match product
     category: 'voyage-steaks',
     isVeggie: true
   },
@@ -1310,7 +1310,7 @@ export const products: Product[] = [
     name: 'Grilled Paneer Steak with Vegetable Mushroom and Marinara Sauce',
     description: '',
     price: 535,
-    image: getImage('voyage-steaks-2'),
+    image: '', // No image - doesn't match product
     category: 'voyage-steaks',
     isVeggie: true
   },
@@ -1319,7 +1319,7 @@ export const products: Product[] = [
     name: 'Grilled Chicken Steak with Lemon Cream Capers',
     description: '',
     price: 595,
-    image: getImage('voyage-steaks-3'),
+    image: '', // No image - doesn't match product
     category: 'voyage-steaks',
     isVeggie: false
   },
@@ -1328,7 +1328,7 @@ export const products: Product[] = [
     name: 'Grilled Chicken Steak with Grilled Vegetable with Smokey Bbq Sauce',
     description: '',
     price: 595,
-    image: getImage('voyage-steaks-4'),
+    image: '', // No image - doesn't match product
     category: 'voyage-steaks',
     isVeggie: false
   },
@@ -1337,7 +1337,7 @@ export const products: Product[] = [
     name: 'Grilled Prawns with Grilled Vegetable with Lemon Pepper Sauce',
     description: '',
     price: 695,
-    image: getImage('voyage-steaks-5'),
+    image: '', // No image - doesn't match product
     category: 'voyage-steaks',
     isVeggie: false
   },
@@ -1348,7 +1348,7 @@ export const products: Product[] = [
     name: 'Caprese Stuffed Mushrooms',
     description: 'Button mushroom, cherry tomato mozzarella cheese extra virgin olive oil, balsamic vinegar with fresh basil',
     price: 445,
-    image: getImage('keto-1'),
+    image: '', // No image - doesn't match product
     category: 'keto',
     isVeggie: true
   },
@@ -1357,7 +1357,7 @@ export const products: Product[] = [
     name: 'Zucchini Fritters with Sour Cream Dip',
     description: '[Voyage special]. Zucchini grated, dice red bell pepper parmesan cheese, with sour cream',
     price: 535,
-    image: getImage('keto-2'),
+    image: '', // No image - doesn't match product
     category: 'keto',
     isVeggie: true
   },
@@ -1366,7 +1366,7 @@ export const products: Product[] = [
     name: 'Smoked Salmon and Cream Cheese Rolls',
     description: 'Smoked salmon, cheese, cream dill',
     price: 775,
-    image: getImage('keto-3'),
+    image: '', // No image - doesn't match product
     category: 'keto',
     isVeggie: false
   },
@@ -1377,7 +1377,7 @@ export const products: Product[] = [
     name: 'Blueberry Cheesecake',
     description: '',
     price: 275,
-    image: getImage('desserts-1'),
+    image: '', // No image - doesn't match product
     category: 'desserts',
     isVeggie: true
   },
@@ -1386,7 +1386,7 @@ export const products: Product[] = [
     name: 'Mango Cheese Cake',
     description: '',
     price: 275,
-    image: getImage('desserts-2'),
+    image: '', // No image - doesn't match product
     category: 'desserts',
     isVeggie: true
   },
@@ -1395,7 +1395,7 @@ export const products: Product[] = [
     name: 'Chocolate Mousse Cake',
     description: '',
     price: 275,
-    image: getImage('desserts-3'),
+    image: '', // No image - doesn't match product
     category: 'desserts',
     isVeggie: true
   },
@@ -1404,7 +1404,7 @@ export const products: Product[] = [
     name: 'Cream Caramel',
     description: '',
     price: 275,
-    image: getImage('desserts-4'),
+    image: '', // No image - doesn't match product
     category: 'desserts',
     isVeggie: true
   },
@@ -1413,7 +1413,7 @@ export const products: Product[] = [
     name: 'Chocolate Walnut Brownie on Sizzler',
     description: '',
     price: 405,
-    image: getImage('desserts-5'),
+    image: '', // No image - doesn't match product
     category: 'desserts',
     isVeggie: true
   },
@@ -1422,7 +1422,7 @@ export const products: Product[] = [
     name: 'Chocolate Lava Cake with Vanilla Ice Cream with Chocolate Sauce',
     description: '',
     price: 405,
-    image: getImage('desserts-6'),
+    image: '', // No image - doesn't match product
     category: 'desserts',
     isVeggie: true
   },
@@ -1433,7 +1433,7 @@ export const products: Product[] = [
     name: 'Espresso',
     description: 'Concentrated form of coffee served in shots of our house blend',
     price: 125,
-    image: getImage('hot-coffees-1'),
+    image: '', // No image - doesn't match product
     category: 'hot-coffees',
     isVeggie: true
   },
