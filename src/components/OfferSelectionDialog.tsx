@@ -16,7 +16,19 @@ interface OfferSelectionDialogProps {
 export const OfferSelectionDialog = ({ open, onOpenChange, offer, onConfirm }: OfferSelectionDialogProps) => {
   // Determine which products to show based on offer type
   const getAvailableProducts = () => {
-    if (offer.id === 'today-offer-1') {
+    if (offer.id === 'today-offer-0') {
+      // 2x1 Coffee Offer - show all coffees
+      const coffees = products.filter(p => 
+        ['hot-coffees', 'iced-coffees', 'cold-brews'].includes(p.category) && !p.isAddOn
+      );
+      return {
+        category1: coffees,
+        category2: [],
+        label1: 'Select Your First Coffee',
+        label2: '',
+        isCoffee2x1: true
+      };
+    } else if (offer.id === 'today-offer-1') {
       // Mocktail + Pizza
       return {
         category1: products.filter(p => p.category === 'mocktails-iced-teas'),
