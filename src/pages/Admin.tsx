@@ -243,7 +243,7 @@ const Admin = () => {
                   )}
                 </div>
               </div>
-              <div className="flex items-center gap-2 mt-1 flex-wrap">
+              <div className="flex items-center gap-2 mt-1">
                 <p className="text-xs text-muted-foreground">
                   {new Date(order.timestamp).toLocaleString('en-US', { 
                     hour: '2-digit', 
@@ -252,33 +252,14 @@ const Admin = () => {
                     day: 'numeric'
                   })}
                 </p>
-                
-                {/* Payment Method Badge */}
-                {order.paymentMethod === 'stripe' && (
-                  <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">
-                    💳 Online
-                  </span>
-                )}
-                {order.paymentMethod === 'counter' && (
-                  <span className="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full font-medium">
-                    💰 Counter
-                  </span>
-                )}
-                
-                {/* Payment Status Badge */}
                 {order.paymentStatus === 'paid' && (
                   <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">
                     ✓ Paid
                   </span>
                 )}
-                {order.paymentStatus === 'counter_pending' && (
+                {(order.paymentStatus === 'counter_pending' || order.paymentStatus === 'pending') && (
                   <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full font-medium">
                     ⏳ Pending Validation
-                  </span>
-                )}
-                {order.paymentStatus === 'pending' && (
-                  <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full font-medium">
-                    ⏳ Payment Pending
                   </span>
                 )}
               </div>
