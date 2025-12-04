@@ -50,6 +50,10 @@ try {
   if (!isSupabaseConfigured) {
     console.warn('⚠️ Supabase no está configurado. Las órdenes se guardarán solo localmente.');
     console.warn('Por favor, configura VITE_SUPABASE_URL y VITE_SUPABASE_ANON_KEY en las variables de entorno de Vercel.');
+    console.warn('URL recibida:', supabaseUrl || 'NINGUNA');
+    console.warn('Key recibida:', supabaseAnonKey ? 'SÍ (pero puede ser inválida)' : 'NINGUNA');
+  } else {
+    console.log('✅ Supabase configurado correctamente');
   }
 } catch (error) {
   // Si hay un error, intentar crear un cliente mínimo
