@@ -1,0 +1,139 @@
+today-offer-1|Mocktail + Pizza|1_0005_Paneer_Tikka_Pizza_jpg.jpeg
+today-offer-2|Mocktail + Burger|1_0004_Chicken_Barbeque_Burger_jpg.jpeg
+today-offer-3|Pancake + Coffee/Shake|1_0004_Chocolate_Banana_Pancake_jpg.jpeg
+voyage-breakfast-board-1|Tofu Scrambled with Sauteed Vegetable|1_0001_09Scrambled_Eggs_with_Truffle_Oil_jpg.jpeg
+voyage-breakfast-board-2|Crispy Ghee Fried Eggs|1_0002_Crispy_Ghee_Fried_Eggs_jpg.jpeg
+voyage-breakfast-board-3|Paneer Akuri with Sauteed Spinach|1_0001_Paneer_Akuri_jpg.jpeg
+voyage-breakfast-board-4|Bombay Style Masala Eggs Bhurji with Bread|1_0003_Bombay_Style_Egg_Bhurji_jpg.jpeg
+voyage-eggs-1|Choice of Eggs|1_0000_10Shakshouka_Baked_Eggs_jpg.jpeg
+voyage-eggs-2|Sauteed Garlic Spinach Omelette|1_0003_07Sauteed_Spinach_Omelette_jpg.jpeg
+voyage-eggs-3|Fresh Herbs Mushroom Stuffed Omelette with Feta Cheese|1_0002_08Fresh_Herbs_Mushroom_Stuffed_Omelette_with_Feta_Cheese_jpg.jpeg
+voyage-eggs-4|Scrambled Eggs with Truffle Oil|1_0001_09Scrambled_Eggs_with_Truffle_Oil_jpg.jpeg
+voyage-eggs-5|Shakshuka Baked Eggs|1_0000_10Shakshouka_Baked_Eggs_jpg.jpeg
+eggs-benedict-1|Sauteed Spinach Poached Eggs Hollandaise|1_0000_Sauteed_Spinach_Poached_Eggs_Hollandaise_jpg.jpeg
+eggs-benedict-2|Chicken Jalapeno and Garlic Hollandaise|1_0001_Chicken_Jalapeno_Hollandaise_jpg.jpeg
+eggs-benedict-3|Smoked Salmon Cream Capers Hollandaise|1_0000_Smoked_Salmon_Cream_Cheese_on_Toast_jpg.jpeg
+all-day-breakfast-1|French Toast with Dates Syrup|1_0002_French_Toast_jpg.jpeg
+all-day-breakfast-2|Classic American Pancakes|1_0003_Classic_American_Pancakes_jpg.jpeg
+all-day-breakfast-3|Chocolate Banana Pancake|1_0004_Chocolate_Banana_Pancake_jpg.jpeg
+all-day-breakfast-4|Nutella Crepes with Roasted Walnut|1_0001_Nutella_Crepes_jpg.jpeg
+all-day-breakfast-5|Pesto Mushroom Sauteed Spinach Crepes|1_0000_Pesto_Spinach_Crepes_jpg.jpeg
+open-toasties-1|Sauteed Mushroom Goat Cheese and Herbs Ricotta on Toast|1_0001_Sauteed_Mushroom_Ricotta_Toast_jpg.jpeg
+open-toasties-2|Roasted Bell Pepper Pesto Feta Cheese on Toast|1_0002_Roasted_Bellpepper_Pesto_Feta_Cheese_on_Toast_jpg.jpeg
+open-toasties-3|Avocado Guacamole on Toast with Feta Cheese|1_0005_Avocado_Guacomale_on_Toast_with_Feta_Cheese_jpg.jpeg
+open-toasties-4|Peri Peri Chicken with 3 Bell Pepper on Toast|1_0003_Peri_Peri_Chicken_with_3_Bellpepper_on_Toast_jpg.jpeg
+open-toasties-5|Creamy Chicken Mayo on Toast|1_0004_Creamy_Chicken_Mayo_on_Toast_jpg.jpeg
+open-toasties-6|Smoked Salmon Cream Cheese on Toast|1_0000_Smoked_Salmon_Cream_Cheese_on_Toast_jpg.jpeg
+smoothie-bowls-1|Berry Nutty Bowl|1_0006_Berry_Nutty_Bowl_jpg.jpeg
+smoothie-bowls-2|Mango Mint Banana Bowl|1_0003_Mango_Mint_Smoothie_Bowl_jpg.jpeg
+smoothie-bowls-3|Chocolate Peanut Butter Bowl|1_0002_Peanut_Butter_Bowl_jpg.jpeg
+smoothie-bowls-4|Blush Breakfast Bowl|1_0005_Blush_Breakfast_Bowl_jpg.jpeg
+smoothie-bowls-5|Chocolate Nutella Bowl|1_0004_Chocolate_Nutella_Bowl_jpg.jpeg
+smoothie-bowls-6|The Voyage Tropical Breakfast Bowl|1_0000_The_Voyage_Tropical_Breakfast_Bowl_jpg.jpeg
+smoothie-bowls-7|The Green Booster|1_0001_The_Green_Booster_jpg.jpeg
+appetizing-morsels-1|Classic French Fries|1_0018_Classic_Fries_jpg.jpeg
+appetizing-morsels-2|Peri Peri French Fries|1_0008_Peri_Peri_Fries_jpg.jpeg
+appetizing-morsels-3|Masala French Fries with Thousand Sauce|1_0012_Masala_Fries_jpg.jpeg
+appetizing-morsels-4|Brown Potato Wedges Fresh Herbs|1_0026_Brown_Potato_Wedges_Fresh_Herbs_jpg.jpeg
+appetizing-morsels-5|Cheese Corn Balls|1_0024_Cheese_Corn_Balls_jpg.jpeg
+appetizing-morsels-6|Cheese Jalapeno Cigars|1_0022_Cheese_Jalapeno_Cigars_jpg.jpeg
+appetizing-morsels-7|Garlic Bread|1_0014_Garlic_Bread_jpg.jpeg
+appetizing-morsels-8|Cheese Garlic Bread|1_0023_Cheese_Garlic_Bread_jpg.jpeg
+appetizing-morsels-9|Nachos with Cheese Sauce|1_0010_Nachos_with_cheese_sauce_jpg.jpeg
+appetizing-morsels-10|Veg The Voyage Nachos Overloaded|1_0001_The_Voyage_Nachos_Overloaded_jpg.jpeg
+appetizing-morsels-11|Veg Tacos|1_0003_Tacos_Veg_jpg.jpeg
+appetizing-morsels-12|Chicken Tacos|1_0004_Tacos_Chicken_jpg.jpeg
+appetizing-morsels-13|Bruschetta Al Pomodoro|1_0025_Bruschetta_al_Pomodoro_jpg.jpeg
+appetizing-morsels-14|Mushroom Crostini with Arugula|1_0011_Mushroom_Crostini_with_Arugula_jpg.jpeg
+appetizing-morsels-15|Stuffed Cheese Mushroom|1_0005_Stuffed_Cheese_Mushroom_jpg.jpeg
+appetizing-morsels-16|Tossed Paneer Burnt Garlic|1_0000_Tossed_Paneer_jpg.jpeg
+appetizing-morsels-17|Chicken with Lemon Pepper Sauce|1_0020_Chicken_with_Lemon_Pepper_Sauce_jpg.jpeg
+appetizing-morsels-18|Spicy Bbq Chicken Wings|1_0007_Spicy_BBQ_Wings_jpg.jpeg
+appetizing-morsels-19|Peri Peri Chicken Wings|1_0006_Spicy_Peri_Peri_Wings_jpg.jpeg
+appetizing-morsels-20|Oriental Style Chicken|1_0009_Oriental_Style_Chicken_jpg.jpeg
+appetizing-morsels-21|Devil Paneer|1_0015_Devil_Paneer_jpg.jpeg
+appetizing-morsels-22|Devil Chicken|1_0016_Devil_Chicken_jpg.jpeg
+appetizing-morsels-23|Chicken Satay with Peanut Brown Chilly Sauce|1_0020_Chicken_with_Lemon_Pepper_Sauce_jpg.jpeg
+appetizing-morsels-24|Cilantro Chicken Wings|1_0019_Cilantro_Chicken_Wings_jpg.jpeg
+appetizing-morsels-25|The Basil Chicken|1_0002_Thai_Basil_Chicken_jpg.jpeg
+appetizing-morsels-26|Lemon Butter Garlic Prawns|1_0013_Lemon_Butter_Prawns_jpg.jpeg
+appetizing-morsels-27|Crispy Prawns with Thousand Island Sauce|1_0017_Crispy_Prawns_jpg.jpeg
+appetizing-morsels-28|Chicken The Voyage Nachos Overloaded|1_0001_The_Voyage_Nachos_Overloaded_jpg.jpeg
+panini-sandwiches-1|Grilled Vegetable Spicy Jalapeno|1_0003_Grilled_Vegetable_Spicy_Jalapeno_jpg.jpeg
+panini-sandwiches-2|Paneer Pesto Bell Pepper|1_0001_Paneer_Pesto_Bellpepper_jpg.jpeg
+panini-sandwiches-3|Corn Mushroom Spinach|1_0005_Corn_Mushroom_Spinach_jpg.jpeg
+panini-sandwiches-4|Creamy Chicken Mayo|1_0004_Creamy_Chicken_Mayo_jpg.jpeg
+panini-sandwiches-5|Paneer Fajita|1_0002_Paneer_Fajita_jpg.jpeg
+panini-sandwiches-6|Caramelized Onion Bbq Chicken|1_0006_Caramlized_Onion_B_B_Q_Chicken_jpg.jpeg
+panini-sandwiches-7|The Voyage Banh Mi|1_0000_The_Voyage_Banh_Mi_jpg.jpeg
+burgers-1|Beetroot and Spinach Burger|1_0006_Beetroot_and_Spinach_Burger_jpg.jpeg
+burgers-2|Crunchy Veg and Cheese Burger|1_0003_Crunchy_Veg_and_Cheese_Burger_jpg.jpeg
+burgers-3|Fried Grilled Paneer Burger|1_0002_Fried_Grilled_Paneer_Burger_jpg.jpeg
+burgers-4|Chicken Barbeque Burger|1_0004_Chicken_Barbeque_Burger_jpg.jpeg
+burgers-5|Grilled Chicken Burger|1_0001_Grilled_Chicken_Burger_jpg.jpeg
+burgers-6|Cheese Hamburger Stuck|1_0005_Cheese_Hamburger_Stuck_jpg.jpeg
+burgers-7|Loaded Patty Chicken Burger|1_0000_Loaded_Patty_Chicken_Burger_jpg.jpeg
+homemade-soups-1|Cream of Tomato Basil Soup|1_0001_Cream_of_Tomato_Basil_Soup_jpg.jpeg
+homemade-soups-2|Cream of Mushroom and Rosemary|1_0002_Cream_of_Mushroom_and_Rosemary_jpg.jpeg
+homemade-soups-3|Broccoli and Green Peas Soup|1_0005_Brocolli_Peas_Soup_jpg.jpeg
+homemade-soups-4|Roasted Pumpkin and Carrot Soup|1_0000_Roasted_Pumpkin_Carrot_Soup_jpg.jpeg
+homemade-soups-5|Cream of Chicken Soup|1_0003_Cream_of_Chicken_Soup_jpg.jpeg
+homemade-soups-6|Chicken Clear with Fresh Basil Soup|1_0004_Chicken_Clear_with_fresh_basil_soup_jpg.jpeg
+farm-fresh-salads-2|Watermelon Feta with Rocket Leaves|1_0000_Watermelon_Feta_Salad_jpg.jpeg
+farm-fresh-salads-3|Classic Caesar Salad|1_0004_Classic_Caesar_Salad_jpg.jpeg
+farm-fresh-salads-4|Green Apple Spinach Walnut Salad|1_0003_Green_Apple_Spinach_Walnut_Salad_jpg.jpeg
+farm-fresh-salads-5|Chicken Caesar Salad|1_0005_Chicken_Caesar_Salad_jpg.jpeg
+farm-fresh-salads-6|Grilled Chicken Warm Vegetable Tossed Salad|1_0002_Grilled_Chicken_Warm_Vegetable_Tossed_Salad_jpg.jpeg
+thin-crust-pizza-1|Classic Margherita Pizza|1_0005_Paneer_Tikka_Pizza_jpg.jpeg
+thin-crust-pizza-2|Corn Capsicum Jalapeno Pizza|1_0008_Corn_Capsicum_Jalapeno_Pizza_jpg.jpeg
+thin-crust-pizza-3|Ultimate Pizza|1_0000_Ultimate_Pizza_jpg.jpeg
+thin-crust-pizza-4|Mushroom Delight Pizza|1_0006_Mushroom_Delight_Pizza_jpg.jpeg
+thin-crust-pizza-5|Pizza Mexicano|1_0002_Pizza_Mexicano_jpg.jpeg
+thin-crust-pizza-6|Pizza Melino|1_0003_Pizza_Melino_jpg.jpeg
+thin-crust-pizza-7|Paneer Tikka Pizza|1_0005_Paneer_Tikka_Pizza_jpg.jpeg
+thin-crust-pizza-8|Pesto Chicken Pizza|1_0004_Pesto_Chicken_Pizza_jpg.jpeg
+thin-crust-pizza-9|Chicken Tikka and Herbs Pizza|1_0009_Chicken_Tikka_And_Herbs_jpg.jpeg
+thin-crust-pizza-10|Smoky Barbeque Chicken Pizza|1_0001_Smoky_Barbeque_Chicken_jpg.jpeg
+veg-pasta-1|Veg Arrabiata Pasta|1_0004_Pasta_Con_Verdure_jpg.jpeg
+veg-pasta-2|Veg Aglio Olio E Peperoncino Pasta|1_0008_Aglio_Olio_E_Peperoncino_jpg.jpeg
+veg-pasta-3|Veg Creamy Alfredo Pasta|1_0005_Creamy_Alfredo_jpg.jpeg
+veg-pasta-4|Veg Pesto Alla Genovese Pasta|1_0001_Pesto_Al_Genovese_jpg.jpeg
+veg-pasta-5|Veg Cream Sauce Pasta with Corn and Bell Pepper|1_0006_Cream_Sauce_Pasta_with_Corn_and_Bellpepper_jpg.jpeg
+veg-pasta-6|Veg Pink Sauce Pasta|1_0000_Pink_Sauce_Pasta_jpg.jpeg
+veg-pasta-7|Veg Pasta Saporita|1_0002_Pasta_Saporita_jpg.jpeg
+veg-pasta-8|Veg Pasta Del Italiana|1_0003_Pasta_Del_Italiana_jpg.jpeg
+veg-pasta-9|Veg Pasta Con Verdure|1_0004_Pasta_Con_Verdure_jpg.jpeg
+non-veg-pasta-2|Non Veg Aglio Olio E Peperoncino Pasta|1_0008_Aglio_Olio_E_Peperoncino_jpg.jpeg
+non-veg-pasta-3|Non Veg Creamy Alfredo Pasta|1_0005_Creamy_Alfredo_jpg.jpeg
+non-veg-pasta-4|Non Veg Pesto Alla Genovese Pasta|1_0001_Pesto_Al_Genovese_jpg.jpeg
+non-veg-pasta-5|Non Veg Cream Sauce Pasta with Corn and Bell Pepper|1_0006_Cream_Sauce_Pasta_with_Corn_and_Bellpepper_jpg.jpeg
+non-veg-pasta-6|Non Veg Pink Sauce Pasta|1_0000_Pink_Sauce_Pasta_jpg.jpeg
+non-veg-pasta-7|Non Veg Pasta Saporita|1_0002_Pasta_Saporita_jpg.jpeg
+non-veg-pasta-8|Non Veg Pasta Del Italiana|1_0003_Pasta_Del_Italiana_jpg.jpeg
+non-veg-pasta-9|Non Veg Pasta Con Verdure|1_0004_Pasta_Con_Verdure_jpg.jpeg
+meal-bowls-4|Veg Mexican Bowl|1_0002_Peanut_Butter_Bowl_jpg.jpeg
+meal-bowls-6|Veg Thai Curry|1_0003_Tacos_Veg_jpg.jpeg
+meal-bowls-7|Chicken Thai Curry|1_0002_Thai_Basil_Chicken_jpg.jpeg
+meal-bowls-8|Chicken Mexican Bowl|1_0002_Peanut_Butter_Bowl_jpg.jpeg
+meal-bowls-5|Burnt Garlic Noodles with Chicken in Schezwan Sauce|1_0020_Chicken_with_Lemon_Pepper_Sauce_jpg.jpeg
+meal-bowls-10|Stuffed Veg Mushroom Black Pepper Sauce with Veg Fried Rice|1_0002_08Fresh_Herbs_Mushroom_Stuffed_Omelette_with_Feta_Cheese_jpg.jpeg
+meal-bowls-12|Chicken Oriental Sauce with 3 Bell Pepper Fried Rice|1_0020_Chicken_with_Lemon_Pepper_Sauce_jpg.jpeg
+meal-bowls-15|Prawns Hot and Garlic Sauce with Butter Parsley Rice|1_0006_Cream_Sauce_Pasta_with_Corn_and_Bellpepper_jpg.jpeg
+voyage-steaks-2|Grilled Paneer Steak with Vegetable Mushroom and Marinara Sauce|1_0006_Cream_Sauce_Pasta_with_Corn_and_Bellpepper_jpg.jpeg
+voyage-steaks-3|Grilled Chicken Steak with Lemon Cream Capers|1_0020_Chicken_with_Lemon_Pepper_Sauce_jpg.jpeg
+voyage-steaks-4|Grilled Chicken Steak with Grilled Vegetable with Smokey Bbq Sauce|1_0020_Chicken_with_Lemon_Pepper_Sauce_jpg.jpeg
+voyage-steaks-5|Grilled Prawns with Grilled Vegetable with Lemon Pepper Sauce|1_0020_Chicken_with_Lemon_Pepper_Sauce_jpg.jpeg
+keto-1|Caprese Stuffed Mushrooms|1_0005_Stuffed_Cheese_Mushroom_jpg.jpeg
+keto-3|Smoked Salmon and Cream Cheese Rolls|1_0000_Smoked_Salmon_Cream_Cheese_on_Toast_jpg.jpeg
+desserts-2|Mango Cheese Cake|1_0005_Stuffed_Cheese_Mushroom_jpg.jpeg
+desserts-3|Chocolate Mousse Cake|1_0004_Chocolate_Banana_Pancake_jpg.jpeg
+desserts-6|Chocolate Lava Cake with Vanilla Ice Cream with Chocolate Sauce|1_0006_Cream_Sauce_Pasta_with_Corn_and_Bellpepper_jpg.jpeg
+hot-coffees-8|Hot Chocolate|1_0004_Chocolate_Banana_Pancake_jpg.jpeg
+cold-brews-1|Classic Cold Brew|1_0003_Classic_American_Pancakes_jpg.jpeg
+specialty-tea-1|Regular Masala Tea|1_0012_Masala_Fries_jpg.jpeg
+specialty-tea-6|Green Tea Pot|1_0001_The_Green_Booster_jpg.jpeg
+shakes-2|Banana Milk Shake|1_0004_Chocolate_Banana_Pancake_jpg.jpeg
+shakes-4|Chocolate Milk Shake|1_0004_Chocolate_Banana_Pancake_jpg.jpeg
+mocktails-iced-teas-3|Green Apple Mojito|1_0003_Green_Apple_Spinach_Walnut_Salad_jpg.jpeg
+fresh-juices-coolers-5|Apple Beetroot Carrot|1_0001_Roasted_Beetroot_Sald_jpg.jpeg
+fresh-juices-coolers-7|Cucumber Pineapple Spinach|1_0003_07Sauteed_Spinach_Omelette_jpg.jpeg
