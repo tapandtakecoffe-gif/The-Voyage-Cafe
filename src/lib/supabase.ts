@@ -17,10 +17,20 @@ export interface OrderRow {
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL?.trim() || '';
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY?.trim() || '';
 
+// Debug: Verificar variables (solo en desarrollo)
+if (import.meta.env.DEV) {
+  console.log('🔍 Variables de entorno Supabase:');
+  console.log('URL:', supabaseUrl ? '✅ Configurada' : '❌ No configurada');
+  console.log('Key:', supabaseAnonKey ? '✅ Configurada' : '❌ No configurada');
+}
+
 // Verificar si Supabase está configurado correctamente
 const isSupabaseConfigured = supabaseUrl && supabaseAnonKey && 
   supabaseUrl.length > 0 && supabaseAnonKey.length > 0 &&
   supabaseUrl.startsWith('http');
+
+// Exportar función para verificar configuración
+export const isSupabaseAvailable = () => isSupabaseConfigured;
 
 // Crear cliente de Supabase de forma segura
 // Si no está configurado, usamos valores placeholder válidos

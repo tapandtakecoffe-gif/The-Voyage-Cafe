@@ -54,9 +54,19 @@ const loadOrdersFromLocal = (): Order[] => {
 
 // Verificar si Supabase está configurado
 const isSupabaseConfigured = () => {
-  const url = import.meta.env.VITE_SUPABASE_URL;
-  const key = import.meta.env.VITE_SUPABASE_ANON_KEY;
-  return !!(url && key && url.trim() !== '' && key.trim() !== '');
+  const url = import.meta.env.VITE_SUPABASE_URL?.trim() || '';
+  const key = import.meta.env.VITE_SUPABASE_ANON_KEY?.trim() || '';
+  const configured = !!(url && key && url.length > 0 && key.length > 0 && url.startsWith('http'));
+  
+  // Debug en consola
+  if (!configured && typeof window !== 'undefined') {
+    console.warn('⚠️ Supabase no está configurado correctamente');
+    console.warn('URL:', url || 'VACÍA');
+    console.warn('Key:', key ? 'Configurada' : 'VACÍA');
+    console.warn('Verifica las variables de entorno en Vercel: VITE_SUPABASE_URL y VITE_SUPABASE_ANON_KEY');
+  }
+  
+  return configured;
 };
 
 export const useOrders = create<OrdersStore>((set, get) => {
