@@ -24,9 +24,18 @@ export default async function handler(req, res) {
   }
 
   // Initialize Stripe
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-    apiVersion: '2024-12-18.acacia',
-  });
+  let stripe;
+  try {
+    stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: '2024-12-18.acacia',
+    });
+  } catch (stripeInitError) {
+    console.error('Error initializing Stripe:', stripeInitError);
+    return res.status(500).json({ 
+      error: 'Stripe initialization failed',
+      message: stripeInitError.message || 'Failed to initialize Stripe'
+    });
+  }
 
   try {
     const { items, tableNumber, orderId } = req.body;
@@ -59,13 +68,27 @@ export default async function handler(req, res) {
       const addOnsTotal = (item.selectedAddOns || []).reduce((sum) => sum, 0);
       const unitAmount = Math.round((itemPrice + addOnsTotal) * 100);
       
+      // Convert relative image URLs to absolute URLs
+      let imageUrl = null;
+      if (item.image) {
+        // If it's already an absolute URL, use it; otherwise make it absolute
+        if (item.image.startsWith('http://') || item.image.startsWith('https://')) {
+          imageUrl = item.image;
+        } else {
+          // Get the base URL from environment or request
+          const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 
+                         (req.headers.origin || 'https://the-voyage-cafe.vercel.app');
+          imageUrl = `${baseUrl}${item.image.startsWith('/') ? '' : '/'}${item.image}`;
+        }
+      }
+      
       return {
         price_data: {
           currency: 'inr', // Change to your currency
           product_data: {
-            name: item.name,
+            name: item.name || 'Item',
             description: item.description || '',
-            images: item.image ? [item.image] : [],
+            images: imageUrl ? [imageUrl] : [],
           },
           unit_amount: unitAmount,
         },
@@ -94,11 +117,16 @@ export default async function handler(req, res) {
       message: error.message,
       type: error.type,
       code: error.code,
-      stack: error.stack
+      stack: error.stack,
+      raw: error.raw ? JSON.stringify(error.raw) : null
     });
+    
+    // Return more detailed error information for debugging
     return res.status(500).json({ 
       error: 'Failed to create checkout session',
-      message: error.message || 'Unknown error occurred'
+      message: error.message || 'Unknown error occurred',
+      type: error.type || 'unknown',
+      code: error.code || 'unknown'
     });
   }
 }
