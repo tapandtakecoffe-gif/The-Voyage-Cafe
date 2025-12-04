@@ -9,7 +9,8 @@ import { useStripeCheckout } from '@/hooks/useStripe';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
-import { ShoppingBag, LayoutDashboard, Search, Leaf, UtensilsCrossed } from 'lucide-react';
+import { ShoppingBag, LayoutDashboard, Search, Leaf, UtensilsCrossed, AlertTriangle } from 'lucide-react';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
 import { Product } from '@/types/product';
@@ -421,6 +422,16 @@ const Menu = () => {
         {/* Main Content Area */}
         <main className="flex-1 overflow-y-auto w-full max-w-full overflow-x-hidden">
           <div className="p-4 sm:p-6 lg:p-8 w-full max-w-full lg:max-w-5xl lg:mx-auto">
+            {/* Demo Warning Banner */}
+            <Alert variant="default" className="mb-6 border-amber-200 bg-amber-50 dark:bg-amber-950/20">
+              <AlertTriangle className="h-4 w-4 text-amber-600" />
+              <AlertDescription className="text-amber-800 dark:text-amber-200">
+                <strong>⚠️ Versión Demo/Prueba:</strong> Esta es una versión de prueba que puede ser inestable. 
+                Algunas imágenes pueden no coincidir exactamente con los productos reales. 
+                Por favor, ten esto en cuenta al realizar pedidos.
+              </AlertDescription>
+            </Alert>
+
             {selectedCategory && (
               <h2 className="text-2xl font-bold text-foreground mb-4">
                 {categories.find(c => c.value === selectedCategory)?.label || 'All Products'}

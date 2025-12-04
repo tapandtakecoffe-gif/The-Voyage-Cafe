@@ -180,6 +180,16 @@ const mapCategory = (tableCategory: string): Product['category'] => {
 export const products: Product[] = [
   // ========== TODAY'S OFFERS ==========
   {
+    id: 'today-offer-0',
+    name: '2x1 Coffee Offer',
+    description: 'Buy any coffee, get another coffee free! Select your second coffee when adding to cart. Applies to Hot Coffees, Iced Coffees, and Cold Brews.',
+    price: 0, // Price will be determined by first coffee selected
+    image: '', // No image for combo offers
+    category: 'today-offers',
+    isVeggie: true,
+    isSpecialOffer: true
+  },
+  {
     id: 'today-offer-1',
     name: 'Mocktail + Pizza',
     description: 'Any Mocktail + Any Pizza - Special combo offer',

@@ -52,19 +52,34 @@ export const OfferSelectionDialog = ({ open, onOpenChange, offer, onConfirm }: O
     return { category1: [], category2: [], label1: '', label2: '' };
   };
 
-  const { category1, category2, label1, label2 } = getAvailableProducts();
+  const { category1, category2, label1, label2, isCoffee2x1 } = getAvailableProducts();
   const [selected1, setSelected1] = useState<string>('');
   const [selected2, setSelected2] = useState<string>('');
 
   const handleConfirm = () => {
-    if (selected1 && selected2) {
-      const product1 = category1.find(p => p.id === selected1);
-      const product2 = category2.find(p => p.id === selected2);
-      if (product1 && product2) {
-        onConfirm([product1, product2]);
-        setSelected1('');
-        setSelected2('');
-        onOpenChange(false);
+    if (isCoffee2x1) {
+      // For 2x1 coffee offer, we need both coffees selected
+      if (selected1 && selected2) {
+        const product1 = category1.find(p => p.id === selected1);
+        const product2 = category1.find(p => p.id === selected2);
+        if (product1 && product2) {
+          onConfirm([product1, product2]);
+          setSelected1('');
+          setSelected2('');
+          onOpenChange(false);
+        }
+      }
+    } else {
+      // Regular combo offers
+      if (selected1 && selected2) {
+        const product1 = category1.find(p => p.id === selected1);
+        const product2 = category2.find(p => p.id === selected2);
+        if (product1 && product2) {
+          onConfirm([product1, product2]);
+          setSelected1('');
+          setSelected2('');
+          onOpenChange(false);
+        }
       }
     }
   };
@@ -83,7 +98,10 @@ export const OfferSelectionDialog = ({ open, onOpenChange, offer, onConfirm }: O
         <DialogHeader>
           <DialogTitle className="text-xl">{offer.name}</DialogTitle>
           <DialogDescription>
-            Select your preferred items for this special offer. Total: ₹{offer.price}
+            {isCoffee2x1 
+              ? 'Select two coffees - pay for one, get the second free!'
+              : `Select your preferred items for this special offer. Total: ₹${offer.price}`
+            }
           </DialogDescription>
         </DialogHeader>
 
@@ -95,7 +113,7 @@ export const OfferSelectionDialog = ({ open, onOpenChange, offer, onConfirm }: O
               <div className="space-y-2 max-h-60 overflow-y-auto">
                 {category1.map((product) => (
                   <div key={product.id} className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-muted/50">
-                    <RadioGroupItem value={product.id} id={`cat1-${product.id}`} />
+                    <RadioGroupItem value={product.id} id={`cat1-${product.id}`} disabled={isCoffee2x1 && selected2 === product.id} />
                     <Label htmlFor={`cat1-${product.id}`} className="flex-1 cursor-pointer">
                       <div className="flex items-center justify-between">
                         <div>
@@ -105,7 +123,7 @@ export const OfferSelectionDialog = ({ open, onOpenChange, offer, onConfirm }: O
                           )}
                         </div>
                         <span className="text-sm text-muted-foreground ml-4">
-                          ₹{product.price}
+                          {isCoffee2x1 && selected1 === product.id ? `₹${product.price}` : `₹${product.price}`}
                         </span>
                       </div>
                     </Label>
@@ -115,32 +133,61 @@ export const OfferSelectionDialog = ({ open, onOpenChange, offer, onConfirm }: O
             </RadioGroup>
           </div>
 
-          {/* Second Category Selection */}
-          <div className="space-y-3">
-            <Label className="text-base font-semibold">{label2}</Label>
-            <RadioGroup value={selected2} onValueChange={setSelected2}>
-              <div className="space-y-2 max-h-60 overflow-y-auto">
-                {category2.map((product) => (
-                  <div key={product.id} className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-muted/50">
-                    <RadioGroupItem value={product.id} id={`cat2-${product.id}`} />
-                    <Label htmlFor={`cat2-${product.id}`} className="flex-1 cursor-pointer">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="text-sm font-medium">{product.name}</p>
-                          {product.description && (
-                            <p className="text-xs text-muted-foreground line-clamp-1">{product.description}</p>
-                          )}
+          {/* Second Category Selection - For coffee 2x1, show same list */}
+          {isCoffee2x1 ? (
+            <div className="space-y-3">
+              <Label className="text-base font-semibold">Select Your Free Coffee:</Label>
+              <RadioGroup value={selected2} onValueChange={setSelected2}>
+                <div className="space-y-2 max-h-60 overflow-y-auto">
+                  {category1.filter(p => p.id !== selected1).map((product) => (
+                    <div key={product.id} className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-muted/50">
+                      <RadioGroupItem value={product.id} id={`cat2-${product.id}`} />
+                      <Label htmlFor={`cat2-${product.id}`} className="flex-1 cursor-pointer">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="text-sm font-medium">{product.name}</p>
+                            {product.description && (
+                              <p className="text-xs text-muted-foreground line-clamp-1">{product.description}</p>
+                            )}
+                          </div>
+                          <div className="text-right ml-4">
+                            <span className="text-sm text-muted-foreground line-through">₹{product.price}</span>
+                            <span className="text-sm font-bold text-green-600 ml-2">FREE</span>
+                          </div>
                         </div>
-                        <span className="text-sm text-muted-foreground ml-4">
-                          ₹{product.price}
-                        </span>
-                      </div>
-                    </Label>
-                  </div>
-                ))}
-              </div>
-            </RadioGroup>
-          </div>
+                      </Label>
+                    </div>
+                  ))}
+                </div>
+              </RadioGroup>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              <Label className="text-base font-semibold">{label2}</Label>
+              <RadioGroup value={selected2} onValueChange={setSelected2}>
+                <div className="space-y-2 max-h-60 overflow-y-auto">
+                  {category2.map((product) => (
+                    <div key={product.id} className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-muted/50">
+                      <RadioGroupItem value={product.id} id={`cat2-${product.id}`} />
+                      <Label htmlFor={`cat2-${product.id}`} className="flex-1 cursor-pointer">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="text-sm font-medium">{product.name}</p>
+                            {product.description && (
+                              <p className="text-xs text-muted-foreground line-clamp-1">{product.description}</p>
+                            )}
+                          </div>
+                          <span className="text-sm text-muted-foreground ml-4">
+                            ₹{product.price}
+                          </span>
+                        </div>
+                      </Label>
+                    </div>
+                  ))}
+                </div>
+              </RadioGroup>
+            </div>
+          )}
 
           {/* Price Summary */}
           {selected1 && selected2 && (

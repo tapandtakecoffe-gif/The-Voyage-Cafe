@@ -56,24 +56,43 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
   };
 
   const handleOfferConfirm = (selectedProducts: Product[]) => {
-    // Calculate the total regular price
-    const regularTotal = selectedProducts.reduce((sum, p) => sum + p.price, 0);
-    const discount = regularTotal - product.price;
-    
-    // Add each selected product with adjusted pricing to match offer price
-    selectedProducts.forEach((selectedProduct, index) => {
-      // Calculate proportional price adjustment
-      const productRatio = selectedProduct.price / regularTotal;
-      const adjustedPrice = Math.round(selectedProduct.price - (discount * productRatio));
+    // Check if this is the 2x1 coffee offer
+    if (product.id === 'today-offer-0') {
+      // For 2x1 coffee: first coffee at full price, second free
+      const firstCoffee = selectedProducts[0];
+      const secondCoffee = selectedProducts[1];
       
-      // Create a modified product with offer info
-      const offerProduct: Product = {
-        ...selectedProduct,
-        name: `${selectedProduct.name} (${product.name})`,
-        price: adjustedPrice
+      // Add first coffee at full price
+      onAddToCart(firstCoffee);
+      
+      // Add second coffee at 0 price (free)
+      const freeCoffee: Product = {
+        ...secondCoffee,
+        name: `${secondCoffee.name} (2x1 FREE)`,
+        price: 0,
+        description: `${secondCoffee.description || ''} [Original Price: ₹${secondCoffee.price}]`.trim()
       };
-      onAddToCart(offerProduct);
-    });
+      onAddToCart(freeCoffee);
+    } else {
+      // Regular combo offers
+      const regularTotal = selectedProducts.reduce((sum, p) => sum + p.price, 0);
+      const discount = regularTotal - product.price;
+      
+      // Add each selected product with adjusted pricing to match offer price
+      selectedProducts.forEach((selectedProduct, index) => {
+        // Calculate proportional price adjustment
+        const productRatio = selectedProduct.price / regularTotal;
+        const adjustedPrice = Math.round(selectedProduct.price - (discount * productRatio));
+        
+        // Create a modified product with offer info
+        const offerProduct: Product = {
+          ...selectedProduct,
+          name: `${selectedProduct.name} (${product.name})`,
+          price: adjustedPrice
+        };
+        onAddToCart(offerProduct);
+      });
+    }
     setOfferDialogOpen(false);
   };
 
