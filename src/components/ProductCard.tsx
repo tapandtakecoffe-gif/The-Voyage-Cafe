@@ -8,6 +8,7 @@ import { Plus, Info, Sparkles } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { ProductInfoDialog } from './ProductInfoDialog';
 import { OfferSelectionDialog } from './OfferSelectionDialog';
+import { Coffee2x1Dialog } from './Coffee2x1Dialog';
 import { getAddOnProducts } from '@/data/products';
 
 interface ProductCardProps {
@@ -19,10 +20,13 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
   const [infoDialogOpen, setInfoDialogOpen] = useState(false);
   const [addOnDialogOpen, setAddOnDialogOpen] = useState(false);
   const [offerDialogOpen, setOfferDialogOpen] = useState(false);
+  const [coffee2x1DialogOpen, setCoffee2x1DialogOpen] = useState(false);
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
   
   const availableAddOns = product.addOns ? getAddOnProducts(product.addOns) : [];
   const isSpecialOffer = product.isSpecialOffer && product.category === 'today-offers';
+  const coffeeCategories = ['hot-coffees', 'iced-coffees', 'cold-brews'];
+  const isCoffee = coffeeCategories.includes(product.category);
   
   const handleAddOnToggle = (addOnId: string) => {
     setSelectedAddOns(prev => 
@@ -35,6 +39,9 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
   const handleAddClick = () => {
     if (isSpecialOffer) {
       setOfferDialogOpen(true);
+    } else if (isCoffee) {
+      // Open 2x1 dialog for coffees
+      setCoffee2x1DialogOpen(true);
     } else if (availableAddOns.length > 0) {
       setAddOnDialogOpen(true);
     } else {
@@ -68,6 +75,22 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
       onAddToCart(offerProduct);
     });
     setOfferDialogOpen(false);
+  };
+
+  const handleCoffee2x1Confirm = (secondCoffee: Product) => {
+    // Add first coffee at full price
+    onAddToCart(product);
+    
+    // Add second coffee at 0 price (free) but keep original price in description for discount calculation
+    const freeCoffee: Product = {
+      ...secondCoffee,
+      id: `${secondCoffee.id}-2x1-free`,
+      name: `${secondCoffee.name} (2x1 FREE)`,
+      price: 0,
+      description: `${secondCoffee.description || ''} [Original Price: ₹${secondCoffee.price}]`.trim()
+    };
+    onAddToCart(freeCoffee);
+    setCoffee2x1DialogOpen(false);
   };
 
   const [showFullDescription, setShowFullDescription] = useState(false);
@@ -193,6 +216,16 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
           onOpenChange={setOfferDialogOpen}
           offer={product}
           onConfirm={handleOfferConfirm}
+        />
+      )}
+
+      {/* Coffee 2x1 Dialog */}
+      {isCoffee && (
+        <Coffee2x1Dialog
+          open={coffee2x1DialogOpen}
+          onOpenChange={setCoffee2x1DialogOpen}
+          selectedCoffee={product}
+          onConfirm={handleCoffee2x1Confirm}
         />
       )}
       

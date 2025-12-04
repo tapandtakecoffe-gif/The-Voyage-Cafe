@@ -73,24 +73,7 @@ export const useCart = create<CartStore>((set, get) => ({
   getTotal: () => {
     const state = get();
     
-    // Calculate coffee items for 2x1 offer
-    const coffeeCategories = ['hot-coffees', 'iced-coffees', 'cold-brews'];
-    const coffeeItems = state.items.filter(item => 
-      coffeeCategories.includes(item.category)
-    );
-    
-    // Calculate total coffee quantity
-    const totalCoffeeQuantity = coffeeItems.reduce((sum, item) => sum + item.quantity, 0);
-    
-    // Calculate coffee discount (2x1: pay for half rounded up)
-    const coffeeDiscount = coffeeItems.reduce((discount, item) => {
-      // For each pair, customer pays for 1 instead of 2
-      const pairs = Math.floor(item.quantity / 2);
-      const freeItems = pairs; // Number of free items
-      return discount + (item.price * freeItems);
-    }, 0);
-    
-    // Calculate regular total
+    // Calculate regular total (coffees with price 0 are already free)
     const regularTotal = state.items.reduce((total, item) => {
       const itemPrice = item.price * item.quantity;
       const addOnsPrice = item.selectedAddOns?.reduce((sum, addOnId) => {
@@ -100,23 +83,31 @@ export const useCart = create<CartStore>((set, get) => ({
       return total + itemPrice + addOnsPrice;
     }, 0);
     
-    // Apply coffee discount
-    return regularTotal - coffeeDiscount;
+    return regularTotal;
   },
   
   getCoffeeDiscount: () => {
+    // Calculate discount from free coffees (price = 0)
     const state = get();
     const coffeeCategories = ['hot-coffees', 'iced-coffees', 'cold-brews'];
-    const coffeeItems = state.items.filter(item => 
-      coffeeCategories.includes(item.category)
+    const freeCoffees = state.items.filter(item => 
+      coffeeCategories.includes(item.category) && item.price === 0
     );
     
-    const coffeeDiscount = coffeeItems.reduce((discount, item) => {
-      const pairs = Math.floor(item.quantity / 2);
-      const freeItems = pairs;
-      return discount + (item.price * freeItems);
+    // Get original prices from description or by finding matching products
+    const discount = freeCoffees.reduce((sum, freeCoffee) => {
+      // Try to extract original price from description
+      const priceMatch = freeCoffee.description?.match(/\[Original Price: ₹(\d+)\]/);
+      if (priceMatch) {
+        return sum + (parseInt(priceMatch[1]) * freeCoffee.quantity);
+      }
+      
+      // Fallback: find original product by ID (remove -2x1-free suffix)
+      const originalId = freeCoffee.id.replace('-2x1-free', '');
+      const originalCoffee = products.find((p: Product) => p.id === originalId);
+      return sum + ((originalCoffee?.price || 0) * freeCoffee.quantity);
     }, 0);
     
-    return coffeeDiscount;
+    return discount;
   }
 }));

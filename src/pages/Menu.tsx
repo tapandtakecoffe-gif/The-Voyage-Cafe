@@ -444,7 +444,7 @@ const Menu = () => {
                       </h2>
                       {isCoffeeCategory && (
                         <span className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded-full font-semibold">
-                          2x1 Offer
+                          2x1 Offer - Select your free coffee!
                         </span>
                       )}
                     </div>

@@ -163,7 +163,7 @@ export const CartSheet = ({ open, onOpenChange, onCheckout }: CartSheetProps) =>
                 <div className="space-y-2 py-2 border-t">
                   {getCoffeeDiscount() > 0 && (
                     <div className="flex justify-between items-center text-sm">
-                      <span className="text-muted-foreground">Coffee 2x1 Discount</span>
+                      <span className="text-muted-foreground">Coffee 2x1 Offer Applied</span>
                       <span className="text-green-600 font-semibold">-₹{getCoffeeDiscount().toFixed(2)}</span>
                     </div>
                   )}
