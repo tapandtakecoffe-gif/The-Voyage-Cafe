@@ -127,17 +127,22 @@ export const useOrders = create<OrdersStore>((set, get) => {
             table: 'orders'
           },
           async (payload) => {
-            console.log('Cambio recibido desde Supabase:', payload.eventType);
+            console.log('🔄 Cambio recibido desde Supabase:', payload.eventType);
+            console.log('📦 Payload completo:', payload);
 
             if (payload.eventType === 'INSERT') {
               // Nueva orden
+              console.log('➕ Nueva orden recibida vía Realtime:', payload.new);
               const newOrder = rowToOrder(payload.new as any);
               const currentOrders = get().orders;
               // Verificar que no existe ya (evitar duplicados)
               if (!currentOrders.find(o => o.id === newOrder.id)) {
+                console.log('✅ Agregando nueva orden a la lista:', newOrder.id);
                 const updatedOrders = [newOrder, ...currentOrders];
                 set({ orders: updatedOrders });
                 saveOrdersToLocal(updatedOrders);
+              } else {
+                console.log('⚠️ Orden ya existe, ignorando:', newOrder.id);
               }
             } else if (payload.eventType === 'UPDATE') {
               // Orden actualizada
@@ -222,17 +227,26 @@ export const useOrders = create<OrdersStore>((set, get) => {
       if (isSupabaseConfigured()) {
         try {
           const orderRow = orderToRow(order);
-          const { error } = await supabase
+          console.log('💾 Guardando orden en Supabase:', order.id);
+          console.log('📋 Datos de la orden:', orderRow);
+          
+          const { data, error } = await supabase
             .from('orders')
-            .insert([orderRow]);
+            .insert([orderRow])
+            .select();
 
           if (error) {
-            console.error('Error guardando orden en Supabase:', error);
+            console.error('❌ Error guardando orden en Supabase:', error);
+            console.error('Detalles del error:', JSON.stringify(error, null, 2));
             // La orden ya está guardada localmente, así que no es crítico
+          } else {
+            console.log('✅ Orden guardada exitosamente en Supabase:', data);
           }
         } catch (error) {
-          console.error('Error guardando orden:', error);
+          console.error('❌ Error guardando orden:', error);
         }
+      } else {
+        console.warn('⚠️ Supabase no configurado, orden guardada solo localmente');
       }
     },
     
