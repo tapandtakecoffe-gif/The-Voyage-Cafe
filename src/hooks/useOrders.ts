@@ -86,11 +86,12 @@ export const useOrders = create<OrdersStore>((set, get) => {
     }
 
     try {
-      // Cargar órdenes iniciales desde Supabase
+      // Cargar órdenes iniciales desde Supabase (sin límite)
       const { data: initialOrders, error: fetchError } = await supabase
         .from('orders')
         .select('*')
-        .order('timestamp', { ascending: false });
+        .order('timestamp', { ascending: false })
+        .limit(1000); // Límite alto para cargar todas las órdenes
 
       if (fetchError) {
         console.error('Error cargando órdenes desde Supabase:', fetchError);
@@ -189,7 +190,8 @@ export const useOrders = create<OrdersStore>((set, get) => {
         const { data, error } = await supabase
           .from('orders')
           .select('*')
-          .order('timestamp', { ascending: false });
+          .order('timestamp', { ascending: false })
+          .limit(1000); // Límite alto para cargar todas las órdenes
 
         if (error) throw error;
 

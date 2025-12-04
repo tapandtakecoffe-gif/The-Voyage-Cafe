@@ -43,7 +43,7 @@ try {
   supabase = createClient(finalUrl, finalKey, {
     realtime: {
       params: {
-        eventsPerSecond: 10
+        eventsPerSecond: 2  // Reducido de 10 a 2 para menor frecuencia
       }
     }
   });
