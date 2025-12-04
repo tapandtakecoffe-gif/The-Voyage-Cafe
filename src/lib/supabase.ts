@@ -14,29 +14,37 @@ export interface OrderRow {
 }
 
 // Obtener las variables de entorno
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL?.trim() || '';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY?.trim() || '';
+
+// Verificar si Supabase está configurado correctamente
+const isSupabaseConfigured = supabaseUrl && supabaseAnonKey && 
+  supabaseUrl.length > 0 && supabaseAnonKey.length > 0 &&
+  supabaseUrl.startsWith('http');
 
 // Crear cliente de Supabase de forma segura
+// Si no está configurado, usamos valores placeholder válidos
+const finalUrl = isSupabaseConfigured ? supabaseUrl : 'https://placeholder.supabase.co';
+const finalKey = isSupabaseConfigured ? supabaseAnonKey : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0';
+
 let supabase: ReturnType<typeof createClient>;
 try {
-  if (supabaseUrl && supabaseAnonKey && supabaseUrl !== '' && supabaseAnonKey !== '') {
-    supabase = createClient(supabaseUrl, supabaseAnonKey, {
-      realtime: {
-        params: {
-          eventsPerSecond: 10
-        }
+  supabase = createClient(finalUrl, finalKey, {
+    realtime: {
+      params: {
+        eventsPerSecond: 10
       }
-    });
-  } else {
-    // Cliente dummy para evitar errores
-    supabase = createClient('https://dummy.supabase.co', 'dummy-key');
+    }
+  });
+  
+  if (!isSupabaseConfigured) {
     console.warn('⚠️ Supabase no está configurado. Las órdenes se guardarán solo localmente.');
+    console.warn('Por favor, configura VITE_SUPABASE_URL y VITE_SUPABASE_ANON_KEY en las variables de entorno de Vercel.');
   }
 } catch (error) {
-  // Si hay un error creando el cliente, crear uno dummy
-  supabase = createClient('https://dummy.supabase.co', 'dummy-key');
+  // Si hay un error, intentar crear un cliente mínimo
   console.error('Error inicializando Supabase:', error);
+  supabase = createClient('https://placeholder.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0');
 }
 
 export { supabase };
