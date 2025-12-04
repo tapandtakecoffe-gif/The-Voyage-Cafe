@@ -57,25 +57,17 @@ const Admin = () => {
     return orderDate.getTime() === targetDate.getTime();
   };
 
-  // Get orders for selected date (or all if no date selected) - ONLY PAID ORDERS
+  // Get orders for selected date (or all if no date selected)
+  // PROVISIONAL: Show ALL orders (admin validates all payments manually)
   const dateFilteredOrders = useMemo(() => {
-    // First filter by payment status - only show paid orders
-    const paidOrders = orders.filter(order => 
-      order.paymentStatus === 'paid' || order.paymentStatus === 'not_required'
-    );
-    
-    if (!selectedDate) return paidOrders;
-    return paidOrders.filter(order => isOrderFromDate(order, selectedDate));
+    if (!selectedDate) return orders;
+    return orders.filter(order => isOrderFromDate(order, selectedDate));
   }, [orders, selectedDate]);
 
-  // Filter and sort orders - ONLY SHOW PAID ORDERS (or counter_pending that can be marked as paid)
+  // Filter and sort orders - PROVISIONAL: Show ALL orders (admin validates manually)
   const filteredAndSortedOrders = useMemo(() => {
-    // First, filter only paid orders or counter_pending (which admin can mark as paid)
-    let filtered = dateFilteredOrders.filter(order => 
-      order.paymentStatus === 'paid' || 
-      order.paymentStatus === 'not_required' ||
-      order.paymentStatus === 'counter_pending'
-    );
+    // Show all orders - admin validates all payments manually
+    let filtered = [...dateFilteredOrders];
 
     // Search filter
     if (searchQuery) {
@@ -107,16 +99,17 @@ const Admin = () => {
   const completedOrders = filteredAndSortedOrders.filter(o => ['completed', 'cancelled'].includes(o.status));
   
   // Get all pending payment orders (not filtered by payment status)
+  // PROVISIONAL: Show all orders that need payment validation
   const pendingPaymentOrders = useMemo(() => {
     return orders.filter(order => 
-      order.paymentStatus === 'pending' && 
+      (order.paymentStatus === 'pending' || order.paymentStatus === 'counter_pending') && 
       (!selectedDate || isOrderFromDate(order, selectedDate))
     ).sort((a, b) => {
       return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime();
     });
   }, [orders, selectedDate]);
   
-  // Calculate total for selected date (or today) - ONLY PAID ORDERS
+  // Calculate total for selected date (or today) - Only count paid orders
   const dateTotal = useMemo(() => {
     const targetDate = selectedDate || new Date();
     targetDate.setHours(0, 0, 0, 0);
@@ -127,14 +120,14 @@ const Admin = () => {
         orderDate.setHours(0, 0, 0, 0);
         // Only count completed orders that are paid
         return o.status === 'completed' && 
-               (o.paymentStatus === 'paid' || o.paymentStatus === 'not_required') &&
+               o.paymentStatus === 'paid' &&
                orderDate.getTime() === targetDate.getTime();
       })
       .reduce((sum, order) => sum + order.total, 0);
   }, [dateFilteredOrders, selectedDate]);
 
 
-  // Calculate orders per hour for selected date - ONLY PAID ORDERS
+  // Calculate orders per hour for selected date - Only count paid orders
   const ordersPerHour = useMemo(() => {
     const targetDate = selectedDate || new Date();
     targetDate.setHours(0, 0, 0, 0);
@@ -144,7 +137,7 @@ const Admin = () => {
       orderDate.setHours(0, 0, 0, 0);
       // Only count paid orders
       return orderDate.getTime() === targetDate.getTime() &&
-             (o.paymentStatus === 'paid' || o.paymentStatus === 'not_required');
+             o.paymentStatus === 'paid';
     });
     
     if (dayOrders.length === 0) return 0;
@@ -283,8 +276,8 @@ const Admin = () => {
 
           {isActive && (
             <div className="space-y-3">
-              {/* Mark as Paid button for counter_pending orders */}
-              {order.paymentStatus === 'counter_pending' && (
+              {/* Mark as Paid button - PROVISIONAL: Show for all pending payment orders */}
+              {(order.paymentStatus === 'counter_pending' || order.paymentStatus === 'pending') && (
                 <Button
                   size="sm"
                   className="w-full h-9 bg-green-600 hover:bg-green-700"

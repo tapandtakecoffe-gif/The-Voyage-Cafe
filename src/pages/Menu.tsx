@@ -67,6 +67,8 @@ const Menu = () => {
     const useStripe = stripeKey && stripeKey.trim().length > 0 && paymentMethod === 'stripe';
 
     // Create order first
+    // PROVISIONAL: All orders are created as 'counter_pending' for admin validation
+    // Stripe payments still work but require admin validation
     const order = {
       id: generateOrderId(),
       items: [...items],
@@ -75,8 +77,7 @@ const Menu = () => {
       customerName: `Table ${tableNumber}`,
       tableNumber: tableNumber,
       timestamp: new Date(),
-      paymentStatus: paymentMethod === 'counter' ? 'counter_pending' as const : 
-                     (useStripe ? 'pending' as const : 'not_required' as const),
+      paymentStatus: 'counter_pending' as const, // All orders need admin validation
     };
     
     console.log('🛒 Orden creada, ID:', order.id, 'Payment Status:', order.paymentStatus);
