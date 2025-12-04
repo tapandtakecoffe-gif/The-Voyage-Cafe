@@ -1,4 +1,6 @@
-# The Voyage Cafe - Digital Menu System
+# The Voyage Cafe
+
+## Sincronización en tiempo real con Supabase - Digital Menu System
 
 Sistema de menú digital para cafetería con panel de administración y sincronización en tiempo real.
 
