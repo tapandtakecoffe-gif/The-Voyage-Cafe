@@ -13,7 +13,6 @@ export interface OrderRow {
   created_at?: string;
   payment_status?: 'not_required' | 'pending' | 'paid' | 'failed' | 'counter_pending';
   stripe_session_id?: string;
-  payment_method?: 'stripe' | 'counter';
 }
 
 // Obtener las variables de entorno
@@ -79,7 +78,7 @@ export const orderToRow = (order: Order): Omit<OrderRow, 'created_at'> => {
     timestampStr = new Date().toISOString();
   }
 
-  const row: any = {
+  return {
     id: order.id,
     items: JSON.stringify(order.items),
     total: Number(order.total), // Asegurar que sea número
@@ -88,15 +87,8 @@ export const orderToRow = (order: Order): Omit<OrderRow, 'created_at'> => {
     table_number: order.tableNumber || null,
     timestamp: timestampStr,
     payment_status: order.paymentStatus,
-    stripe_session_id: order.stripeSessionId || null,
+    stripe_session_id: order.stripeSessionId || null
   };
-  
-  // Solo agregar payment_method si existe (para compatibilidad con tablas antiguas)
-  if (order.paymentMethod) {
-    row.payment_method = order.paymentMethod;
-  }
-  
-  return row;
 };
 
 // Helper para convertir OrderRow a Order
@@ -109,7 +101,6 @@ export const rowToOrder = (row: OrderRow): Order => ({
   tableNumber: row.table_number || undefined,
   timestamp: new Date(row.timestamp),
   paymentStatus: row.payment_status,
-  stripeSessionId: row.stripe_session_id,
-  paymentMethod: row.payment_method
+  stripeSessionId: row.stripe_session_id
 });
 

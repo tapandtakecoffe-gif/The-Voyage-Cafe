@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { OrderStatusBadge } from '@/components/OrderStatusBadge';
-import { ArrowLeft, LogOut, MoreVertical, Search, CheckCircle2, XCircle, UserCircle2, TrendingUp, Calendar as CalendarIcon, CreditCard, Wallet } from 'lucide-react';
+import { ArrowLeft, LogOut, MoreVertical, Search, CheckCircle2, XCircle, UserCircle2, TrendingUp, Calendar as CalendarIcon } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Order } from '@/types/product';
@@ -243,7 +243,7 @@ const Admin = () => {
                   )}
                 </div>
               </div>
-              <div className="flex items-center gap-2 mt-1 flex-wrap">
+              <div className="flex items-center gap-2 mt-1">
                 <p className="text-xs text-muted-foreground">
                   {new Date(order.timestamp).toLocaleString('en-US', { 
                     hour: '2-digit', 
@@ -252,32 +252,19 @@ const Admin = () => {
                     day: 'numeric'
                   })}
                 </p>
-                
-                {/* Payment Method Badge */}
-                {order.paymentMethod === 'stripe' && (
-                  <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
-                    <CreditCard className="h-3 w-3" />
-                    Stripe
-                  </span>
-                )}
-                {order.paymentMethod === 'counter' && (
-                  <span className="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
-                    <Wallet className="h-3 w-3" />
-                    Counter
-                  </span>
-                )}
-                
-                {/* Payment Status Badge */}
                 {order.paymentStatus === 'paid' && (
-                  <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
-                    <CheckCircle2 className="h-3 w-3" />
-                    Payment Validated
+                  <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">
+                    ✓ Paid
                   </span>
                 )}
-                {(order.paymentStatus === 'counter_pending' || order.paymentStatus === 'pending') && (
-                  <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
-                    <XCircle className="h-3 w-3" />
-                    Pending Validation
+                {order.paymentStatus === 'counter_pending' && (
+                  <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full font-medium">
+                    💰 Pay at Counter
+                  </span>
+                )}
+                {order.paymentStatus === 'pending' && (
+                  <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full font-medium">
+                    ⏳ Payment Pending
                   </span>
                 )}
               </div>
@@ -304,7 +291,7 @@ const Admin = () => {
 
           {isActive && (
             <div className="space-y-3">
-              {/* Payment Validation Button - PROVISIONAL: Show for all pending payment orders */}
+              {/* Mark as Paid button - PROVISIONAL: Show for all pending payment orders */}
               {(order.paymentStatus === 'counter_pending' || order.paymentStatus === 'pending') && (
                 <Button
                   size="sm"
@@ -312,15 +299,8 @@ const Admin = () => {
                   onClick={() => handleMarkAsPaid(order.id)}
                 >
                   <CheckCircle2 className="h-4 w-4 mr-2" />
-                  Validate Payment
+                  Mark as Paid
                 </Button>
-              )}
-              
-              {/* Show payment method info if validated */}
-              {order.paymentStatus === 'paid' && order.paymentMethod && (
-                <div className="text-xs text-muted-foreground text-center pt-1">
-                  Payment validated • {order.paymentMethod === 'stripe' ? 'Stripe' : 'Counter'}
-                </div>
               )}
               
               {/* Quick Actions for ready orders */}
