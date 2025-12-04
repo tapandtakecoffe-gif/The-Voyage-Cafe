@@ -1,11 +1,10 @@
-let orderCounter = 1;
-
+// Generate a unique order ID using timestamp and random number
 export const generateOrderId = (): string => {
-  const id = orderCounter;
-  orderCounter++;
-  return id.toString().padStart(3, '0');
+  const timestamp = Date.now();
+  const random = Math.floor(Math.random() * 10000);
+  return `ORD-${timestamp}-${random}`;
 };
 
 export const resetOrderCounter = () => {
-  orderCounter = 1;
+  // No longer needed, but kept for compatibility
 };

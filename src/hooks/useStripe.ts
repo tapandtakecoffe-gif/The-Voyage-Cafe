@@ -14,7 +14,11 @@ export const useStripeCheckout = () => {
       }
 
       // Get the base URL (for Vercel or local development)
-      const baseUrl = import.meta.env.VITE_API_URL || window.location.origin;
+      // In production, use the current origin; in development, use localhost
+      const baseUrl = window.location.origin;
+      
+      console.log('🔗 Calling checkout API at:', `${baseUrl}/api/create-checkout-session`);
+      console.log('📦 Request data:', { items: items.length, tableNumber, orderId });
       
       // Call your API to create checkout session
       const response = await fetch(`${baseUrl}/api/create-checkout-session`, {
@@ -30,8 +34,10 @@ export const useStripeCheckout = () => {
       });
 
       if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Error al crear sesión de pago');
+        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+        console.error('❌ API Error:', errorData);
+        console.error('❌ Response status:', response.status);
+        throw new Error(errorData.error || errorData.message || 'Error al crear sesión de pago');
       }
 
       const { sessionId, url } = await response.json();

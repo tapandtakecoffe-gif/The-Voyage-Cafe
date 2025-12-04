@@ -1,9 +1,5 @@
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2024-12-18.acacia',
-});
-
 export default async function handler(req, res) {
   // Enable CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -17,6 +13,20 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
+
+  // Check if Stripe secret key is configured
+  if (!process.env.STRIPE_SECRET_KEY) {
+    console.error('STRIPE_SECRET_KEY is not configured');
+    return res.status(500).json({ 
+      error: 'Stripe is not configured',
+      message: 'STRIPE_SECRET_KEY environment variable is missing'
+    });
+  }
+
+  // Initialize Stripe
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+    apiVersion: '2024-12-18.acacia',
+  });
 
   try {
     const { items, tableNumber, orderId } = req.body;
@@ -80,9 +90,15 @@ export default async function handler(req, res) {
     return res.status(200).json({ sessionId: session.id, url: session.url });
   } catch (error) {
     console.error('Error creating checkout session:', error);
+    console.error('Error details:', {
+      message: error.message,
+      type: error.type,
+      code: error.code,
+      stack: error.stack
+    });
     return res.status(500).json({ 
       error: 'Failed to create checkout session',
-      message: error.message 
+      message: error.message || 'Unknown error occurred'
     });
   }
 }
