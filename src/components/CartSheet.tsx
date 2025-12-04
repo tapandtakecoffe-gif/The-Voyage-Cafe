@@ -128,11 +128,11 @@ export const CartSheet = ({ open, onOpenChange, onCheckout }: CartSheetProps) =>
             <SheetFooter className="flex-col gap-4 sm:flex-col">
               <div className="w-full space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="table-number">Table Number</Label>
+                  <Label htmlFor="table-number">Table Number or Name</Label>
                   <Input
                     id="table-number"
                     type="text"
-                    placeholder="Enter table number"
+                    placeholder="Enter table number or name"
                     value={tableNumber}
                     onChange={(e) => setTableNumber(e.target.value)}
                     className="w-full"
