@@ -316,7 +316,19 @@ export const useOrders = create<OrdersStore>((set, get) => {
     },
     
     getOrderById: (orderId) => {
-      const allOrders = get().orders;
+      // First check in current state
+      let allOrders = get().orders;
+      
+      // If not found, try loading from localStorage
+      if (!allOrders.find(order => order.id === orderId)) {
+        const loaded = loadOrdersFromLocal();
+        if (loaded.length > 0) {
+          allOrders = loaded;
+          // Update state with loaded orders
+          set({ orders: loaded });
+        }
+      }
+      
       return allOrders.find(order => order.id === orderId);
     },
     

@@ -24,31 +24,36 @@ const OrderStatus = () => {
   useEffect(() => {
     if (!orderId) return;
 
-    const refreshOrder = () => {
-      loadOrders();
-      const updatedOrder = getOrderById(orderId);
-      if (updatedOrder) {
-        // Check if user has access to this order
-        if (user && updatedOrder.userId && updatedOrder.userId !== user.id) {
-          toast({
-            title: "Access denied",
-            description: "This order does not belong to you",
-            variant: "destructive",
-          });
-          navigate('/');
-          return;
+    const refreshOrder = async () => {
+      // Always load orders first to ensure we have the latest data
+      await loadOrders();
+      
+      // Small delay to ensure orders are loaded
+      setTimeout(() => {
+        const updatedOrder = getOrderById(orderId);
+        if (updatedOrder) {
+          // Check if user has access to this order
+          if (user && updatedOrder.userId && updatedOrder.userId !== user.id) {
+            toast({
+              title: "Access denied",
+              description: "This order does not belong to you",
+              variant: "destructive",
+            });
+            navigate('/');
+            return;
+          }
+          setOrder(updatedOrder);
+          // Persist order ID in localStorage so it survives page reloads
+          localStorage.setItem('last_viewed_order', orderId);
+        } else {
+          // If order not found, try to load from localStorage
+          const lastOrderId = localStorage.getItem('last_viewed_order');
+          if (lastOrderId === orderId) {
+            // Order was deleted or doesn't exist anymore
+            localStorage.removeItem('last_viewed_order');
+          }
         }
-        setOrder(updatedOrder);
-        // Persist order ID in localStorage so it survives page reloads
-        localStorage.setItem('last_viewed_order', orderId);
-      } else {
-        // If order not found, try to load from localStorage
-        const lastOrderId = localStorage.getItem('last_viewed_order');
-        if (lastOrderId === orderId) {
-          // Order was deleted or doesn't exist anymore
-          localStorage.removeItem('last_viewed_order');
-        }
-      }
+      }, 100);
     };
 
     // Initial load
