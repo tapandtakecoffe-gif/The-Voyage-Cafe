@@ -17,19 +17,28 @@ export interface OrderRow {
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
 
+// Crear cliente de Supabase solo si las variables están configuradas
+// Si no están configuradas, creamos un cliente dummy que no hará nada
+export const supabase = (supabaseUrl && supabaseAnonKey) 
+  ? createClient(supabaseUrl, supabaseAnonKey, {
+      realtime: {
+        params: {
+          eventsPerSecond: 10
+        }
+      }
+    })
+  : createClient('https://placeholder.supabase.co', 'placeholder-key', {
+      realtime: {
+        params: {
+          eventsPerSecond: 10
+        }
+      }
+    });
+
 if (!supabaseUrl || !supabaseAnonKey) {
   console.warn('⚠️ Supabase no está configurado. Las órdenes se guardarán solo localmente.');
-  console.warn('Por favor, configura VITE_SUPABASE_URL y VITE_SUPABASE_ANON_KEY en tu archivo .env');
+  console.warn('Por favor, configura VITE_SUPABASE_URL y VITE_SUPABASE_ANON_KEY en las variables de entorno de Vercel.');
 }
-
-// Crear cliente de Supabase
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-  realtime: {
-    params: {
-      eventsPerSecond: 10
-    }
-  }
-});
 
 // Helper para convertir Order a OrderRow
 export const orderToRow = (order: Order): Omit<OrderRow, 'created_at'> => ({
