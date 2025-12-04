@@ -25,4 +25,6 @@ export interface Order {
   customerName: string;
   tableNumber?: string; // Table number for the order
   timestamp: Date;
+  paymentStatus?: 'pending' | 'paid' | 'failed' | 'not_required'; // Payment status for Stripe integration
+  stripeSessionId?: string; // Stripe checkout session ID
 }

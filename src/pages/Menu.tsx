@@ -5,6 +5,7 @@ import { CartSheet } from '@/components/CartSheet';
 import { AdminAccessDialog } from '@/components/AdminAccessDialog';
 import { useCart } from '@/hooks/useCart';
 import { useOrders } from '@/hooks/useOrders';
+import { useStripeCheckout } from '@/hooks/useStripe';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
@@ -30,6 +31,7 @@ const Menu = () => {
   const [categorySheetOpen, setCategorySheetOpen] = useState(false);
   const { items, addItem, clearCart, getTotal } = useCart();
   const { addOrder } = useOrders();
+  const { createCheckoutSession } = useStripeCheckout();
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -50,6 +52,20 @@ const Menu = () => {
     console.log('🛒🛒🛒 INICIANDO handleCheckout - Mesa:', tableNumber);
     console.log('🛒 Items en el carrito:', items.length);
     
+    if (items.length === 0) {
+      toast({
+        title: "Cart is empty",
+        description: "Please add items to your cart before checkout",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Check if Stripe is configured
+    const stripeKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
+    const useStripe = stripeKey && stripeKey.trim().length > 0;
+
+    // Create order first
     const order = {
       id: generateOrderId(),
       items: [...items],
@@ -57,25 +73,44 @@ const Menu = () => {
       status: 'pending' as const,
       customerName: `Table ${tableNumber}`,
       tableNumber: tableNumber,
-      timestamp: new Date()
+      timestamp: new Date(),
+      paymentStatus: useStripe ? 'pending' : 'not_required' as const,
     };
     
-    console.log('🛒 Orden creada, llamando a addOrder:', order.id);
+    console.log('🛒 Orden creada, ID:', order.id);
     
     try {
+      // Save order first (with pending payment status if using Stripe)
       await addOrder(order);
       console.log('🛒 addOrder completado');
-    } catch (error) {
-      console.error('❌ ERROR en addOrder:', error);
+
+      if (useStripe) {
+        // Redirect to Stripe Checkout
+        toast({
+          title: "Redirecting to payment...",
+          description: "Please complete your payment to confirm your order",
+        });
+        
+        await createCheckoutSession(items, tableNumber, order.id);
+        // Don't clear cart yet - wait for payment confirmation
+      } else {
+        // No Stripe configured, proceed with order as-is
+        clearCart();
+        toast({
+          title: "Order placed!",
+          description: `Your order #${order.id} has been received for Table ${tableNumber}`,
+          duration: 5000,
+        });
+        navigate(`/order/${order.id}`);
+      }
+    } catch (error: any) {
+      console.error('❌ ERROR en checkout:', error);
+      toast({
+        title: "Checkout error",
+        description: error.message || "Failed to process checkout. Please try again.",
+        variant: "destructive",
+      });
     }
-    
-    clearCart();
-    
-    toast({
-      title: "Order placed!",
-      description: `Your order #${order.id} has been received for Table ${tableNumber}`,
-      duration: 5000,
-    });
   };
 
   const handleAdminAccess = () => {

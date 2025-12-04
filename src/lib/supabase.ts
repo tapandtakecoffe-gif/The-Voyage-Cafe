@@ -10,6 +10,8 @@ export interface OrderRow {
   customer_name: string;
   table_number?: string;
   timestamp: string;
+  payment_status?: 'pending' | 'paid' | 'failed' | 'not_required';
+  stripe_session_id?: string;
   created_at?: string;
 }
 
@@ -83,7 +85,9 @@ export const orderToRow = (order: Order): Omit<OrderRow, 'created_at'> => {
     status: order.status,
     customer_name: order.customerName,
     table_number: order.tableNumber || null,
-    timestamp: timestampStr
+    timestamp: timestampStr,
+    payment_status: order.paymentStatus || 'not_required',
+    stripe_session_id: order.stripeSessionId || null
   };
 };
 
@@ -95,6 +99,8 @@ export const rowToOrder = (row: OrderRow): Order => ({
   status: row.status,
   customerName: row.customer_name,
   tableNumber: row.table_number || undefined,
-  timestamp: new Date(row.timestamp)
+  timestamp: new Date(row.timestamp),
+  paymentStatus: row.payment_status || 'not_required',
+  stripeSessionId: row.stripe_session_id || undefined
 });
 
