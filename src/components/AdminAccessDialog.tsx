@@ -75,9 +75,6 @@ export const AdminAccessDialog = ({ open, onOpenChange, onSuccess }: AdminAccess
                 <p className="text-sm text-destructive">Incorrect password</p>
               )}
             </div>
-            <p className="text-xs text-muted-foreground">
-              Demo password: <span className="font-mono font-semibold">cafe123</span>
-            </p>
           </div>
 
           <DialogFooter>

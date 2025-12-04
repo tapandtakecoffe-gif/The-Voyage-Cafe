@@ -6,6 +6,7 @@ interface OrdersStore {
   orders: Order[];
   addOrder: (order: Order) => void;
   updateOrderStatus: (orderId: string, status: Order['status']) => void;
+  updatePaymentStatus: (orderId: string, paymentStatus: Order['paymentStatus']) => void;
   getOrderById: (orderId: string) => Order | undefined;
   getUserOrders: (userId: string) => Order[];
   loadOrders: () => void;
@@ -283,6 +284,33 @@ export const useOrders = create<OrdersStore>((set, get) => {
           }
         } catch (error) {
           console.error('Error actualizando estado:', error);
+        }
+      }
+    },
+    
+    updatePaymentStatus: async (orderId, paymentStatus) => {
+      // Actualizar localmente primero
+      const updatedOrders = get().orders.map(order =>
+        order.id === orderId ? { ...order, paymentStatus } : order
+      );
+      set({ orders: updatedOrders });
+      saveOrdersToLocal(updatedOrders);
+
+      // Si Supabase está configurado, actualizar en la base de datos
+      if (isSupabaseConfigured()) {
+        try {
+          const { error } = await supabase
+            .from('orders')
+            .update({ payment_status: paymentStatus })
+            .eq('id', orderId);
+
+          if (error) {
+            console.error('Error actualizando estado de pago en Supabase:', error);
+          } else {
+            console.log('✅ Estado de pago actualizado:', paymentStatus);
+          }
+        } catch (error) {
+          console.error('Error actualizando estado de pago:', error);
         }
       }
     },

@@ -48,8 +48,8 @@ const Menu = () => {
     });
   };
 
-  const handleCheckout = async (tableNumber: string) => {
-    console.log('🛒🛒🛒 INICIANDO handleCheckout - Mesa:', tableNumber);
+  const handleCheckout = async (tableNumber: string, paymentMethod: 'stripe' | 'counter' = 'stripe') => {
+    console.log('🛒🛒🛒 INICIANDO handleCheckout - Mesa:', tableNumber, 'Método:', paymentMethod);
     console.log('🛒 Items en el carrito:', items.length);
     
     if (items.length === 0) {
@@ -63,7 +63,7 @@ const Menu = () => {
 
     // Check if Stripe is configured
     const stripeKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
-    const useStripe = stripeKey && stripeKey.trim().length > 0;
+    const useStripe = stripeKey && stripeKey.trim().length > 0 && paymentMethod === 'stripe';
 
     // Create order first
     const order = {
@@ -74,17 +74,27 @@ const Menu = () => {
       customerName: `Table ${tableNumber}`,
       tableNumber: tableNumber,
       timestamp: new Date(),
-      paymentStatus: useStripe ? 'pending' : 'not_required' as const,
+      paymentStatus: paymentMethod === 'counter' ? 'counter_pending' as const : 
+                     (useStripe ? 'pending' as const : 'not_required' as const),
     };
     
-    console.log('🛒 Orden creada, ID:', order.id);
+    console.log('🛒 Orden creada, ID:', order.id, 'Payment Status:', order.paymentStatus);
     
     try {
-      // Save order first (with pending payment status if using Stripe)
+      // Save order first
       await addOrder(order);
       console.log('🛒 addOrder completado');
 
-      if (useStripe) {
+      if (paymentMethod === 'counter') {
+        // Pay at counter - order is created but payment is pending
+        clearCart();
+        toast({
+          title: "Order placed!",
+          description: `Your order #${order.id} has been received. Please pay at the counter when ready.`,
+          duration: 5000,
+        });
+        navigate(`/order/${order.id}`);
+      } else if (useStripe) {
         // Redirect to Stripe Checkout
         toast({
           title: "Redirecting to payment...",

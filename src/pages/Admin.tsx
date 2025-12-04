@@ -30,7 +30,7 @@ import {
 import { Calendar } from '@/components/ui/calendar';
 
 const Admin = () => {
-  const { orders, updateOrderStatus, loadOrders, clearAllOrders } = useOrders();
+  const { orders, updateOrderStatus, updatePaymentStatus, loadOrders, clearAllOrders } = useOrders();
   const navigate = useNavigate();
   const { toast } = useToast();
   
@@ -67,11 +67,13 @@ const Admin = () => {
     return paidOrders.filter(order => isOrderFromDate(order, selectedDate));
   }, [orders, selectedDate]);
 
-  // Filter and sort orders - ONLY SHOW PAID ORDERS
+  // Filter and sort orders - ONLY SHOW PAID ORDERS (or counter_pending that can be marked as paid)
   const filteredAndSortedOrders = useMemo(() => {
-    // First, filter only paid orders
+    // First, filter only paid orders or counter_pending (which admin can mark as paid)
     let filtered = dateFilteredOrders.filter(order => 
-      order.paymentStatus === 'paid' || order.paymentStatus === 'not_required'
+      order.paymentStatus === 'paid' || 
+      order.paymentStatus === 'not_required' ||
+      order.paymentStatus === 'counter_pending'
     );
 
     // Search filter
@@ -163,6 +165,14 @@ const Admin = () => {
     }
   };
 
+  const handleMarkAsPaid = async (orderId: string) => {
+    await updatePaymentStatus(orderId, 'paid');
+    toast({
+      title: "Payment confirmed",
+      description: `Order #${orderId} has been marked as paid`,
+    });
+  };
+
   const handleLogout = () => {
     localStorage.removeItem('admin_access');
     toast({
@@ -228,6 +238,11 @@ const Admin = () => {
                     ✓ Paid
                   </span>
                 )}
+                {order.paymentStatus === 'counter_pending' && (
+                  <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full font-medium">
+                    💰 Pay at Counter
+                  </span>
+                )}
                 {order.paymentStatus === 'pending' && (
                   <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full font-medium">
                     ⏳ Payment Pending
@@ -257,6 +272,18 @@ const Admin = () => {
 
           {isActive && (
             <div className="space-y-3">
+              {/* Mark as Paid button for counter_pending orders */}
+              {order.paymentStatus === 'counter_pending' && (
+                <Button
+                  size="sm"
+                  className="w-full h-9 bg-green-600 hover:bg-green-700"
+                  onClick={() => handleMarkAsPaid(order.id)}
+                >
+                  <CheckCircle2 className="h-4 w-4 mr-2" />
+                  Mark as Paid
+                </Button>
+              )}
+              
               {/* Quick Actions for ready orders */}
               {isReady && (
                 <div className="flex gap-2">

@@ -2,8 +2,9 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter } from '@/com
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useCart } from '@/hooks/useCart';
-import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react';
+import { Minus, Plus, Trash2, ShoppingBag, CreditCard, Wallet } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { products } from '@/data/products';
 import { useState } from 'react';
@@ -11,12 +12,13 @@ import { useState } from 'react';
 interface CartSheetProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onCheckout: (tableNumber: string) => void;
+  onCheckout: (tableNumber: string, paymentMethod: 'stripe' | 'counter') => void;
 }
 
 export const CartSheet = ({ open, onOpenChange, onCheckout }: CartSheetProps) => {
   const { items, updateQuantity, removeItem, getTotal } = useCart();
   const [tableNumber, setTableNumber] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState<'stripe' | 'counter'>('stripe');
   
   const getItemKey = (item: typeof items[0]) => {
     return `${item.id}-${item.selectedAddOns?.sort().join(',') || ''}`;
@@ -26,9 +28,10 @@ export const CartSheet = ({ open, onOpenChange, onCheckout }: CartSheetProps) =>
     if (!tableNumber.trim()) {
       return;
     }
-    onCheckout(tableNumber.trim());
+    onCheckout(tableNumber.trim(), paymentMethod);
     onOpenChange(false);
     setTableNumber('');
+    setPaymentMethod('stripe'); // Reset to default
   };
 
   return (
@@ -123,7 +126,7 @@ export const CartSheet = ({ open, onOpenChange, onCheckout }: CartSheetProps) =>
             </ScrollArea>
 
             <SheetFooter className="flex-col gap-4 sm:flex-col">
-              <div className="w-full space-y-3">
+              <div className="w-full space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="table-number">Table Number</Label>
                   <Input
@@ -135,6 +138,28 @@ export const CartSheet = ({ open, onOpenChange, onCheckout }: CartSheetProps) =>
                     className="w-full"
                   />
                 </div>
+                
+                {/* Payment Method Selection */}
+                <div className="space-y-3">
+                  <Label>Payment Method</Label>
+                  <RadioGroup value={paymentMethod} onValueChange={(value) => setPaymentMethod(value as 'stripe' | 'counter')}>
+                    <div className="flex items-center space-x-2 p-3 border rounded-lg hover:bg-muted/50 cursor-pointer">
+                      <RadioGroupItem value="stripe" id="stripe" />
+                      <Label htmlFor="stripe" className="flex-1 cursor-pointer flex items-center gap-2">
+                        <CreditCard className="h-4 w-4" />
+                        <span>Pay Online (Stripe)</span>
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 p-3 border rounded-lg hover:bg-muted/50 cursor-pointer">
+                      <RadioGroupItem value="counter" id="counter" />
+                      <Label htmlFor="counter" className="flex-1 cursor-pointer flex items-center gap-2">
+                        <Wallet className="h-4 w-4" />
+                        <span>Pay at Counter</span>
+                      </Label>
+                    </div>
+                  </RadioGroup>
+                </div>
+                
                 <div className="flex justify-between items-center py-2 border-t">
                   <span className="text-lg font-semibold">Total</span>
                   <span className="text-2xl font-bold text-primary">₹{getTotal().toFixed(2)}</span>
@@ -146,7 +171,7 @@ export const CartSheet = ({ open, onOpenChange, onCheckout }: CartSheetProps) =>
                 className="w-full"
                 disabled={!tableNumber.trim() || items.length === 0}
               >
-                Place Order
+                {paymentMethod === 'counter' ? 'Place Order (Pay at Counter)' : 'Place Order & Pay'}
               </Button>
             </SheetFooter>
           </>

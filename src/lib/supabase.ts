@@ -100,7 +100,7 @@ export const rowToOrder = (row: OrderRow): Order => ({
   customerName: row.customer_name,
   tableNumber: row.table_number || undefined,
   timestamp: new Date(row.timestamp),
-  paymentStatus: (row.payment_status as 'not_required' | 'pending' | 'paid' | 'failed') || 'not_required',
+  paymentStatus: (row.payment_status as 'not_required' | 'pending' | 'paid' | 'failed' | 'counter_pending') || 'not_required',
   stripeSessionId: row.stripe_session_id || undefined
 });
 

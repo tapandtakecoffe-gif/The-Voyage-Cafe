@@ -20,7 +20,7 @@ const OrderStatus = () => {
   const [order, setOrder] = useState<Order | undefined>(orderId ? getOrderById(orderId) : undefined);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
-  // Auto-refresh every 3 seconds to get latest updates
+  // Auto-refresh every 3 seconds to get latest updates and persist order
   useEffect(() => {
     if (!orderId) return;
 
@@ -39,6 +39,15 @@ const OrderStatus = () => {
           return;
         }
         setOrder(updatedOrder);
+        // Persist order ID in localStorage so it survives page reloads
+        localStorage.setItem('last_viewed_order', orderId);
+      } else {
+        // If order not found, try to load from localStorage
+        const lastOrderId = localStorage.getItem('last_viewed_order');
+        if (lastOrderId === orderId) {
+          // Order was deleted or doesn't exist anymore
+          localStorage.removeItem('last_viewed_order');
+        }
       }
     };
 
@@ -50,6 +59,16 @@ const OrderStatus = () => {
 
     return () => clearInterval(interval);
   }, [orderId, getOrderById, loadOrders, user, toast, navigate]);
+
+  // Load order from localStorage on mount if orderId is missing
+  useEffect(() => {
+    if (!orderId) {
+      const lastOrderId = localStorage.getItem('last_viewed_order');
+      if (lastOrderId) {
+        navigate(`/order/${lastOrderId}`, { replace: true });
+      }
+    }
+  }, [orderId, navigate]);
 
   const handleRefresh = () => {
     setIsRefreshing(true);
@@ -151,6 +170,36 @@ const OrderStatus = () => {
           </CardHeader>
 
           <CardContent className="space-y-6">
+            {/* Payment Status */}
+            {order.paymentStatus && (
+              <div className="bg-muted p-4 rounded-lg">
+                {order.paymentStatus === 'paid' && (
+                  <div className="flex items-center gap-2 text-green-700">
+                    <span className="text-lg">✓</span>
+                    <p className="text-sm font-semibold">Payment confirmed</p>
+                  </div>
+                )}
+                {order.paymentStatus === 'counter_pending' && (
+                  <div className="flex items-center gap-2 text-yellow-700">
+                    <span className="text-lg">⏳</span>
+                    <p className="text-sm font-semibold">Payment pending at counter - Please pay when your order is ready</p>
+                  </div>
+                )}
+                {order.paymentStatus === 'pending' && (
+                  <div className="flex items-center gap-2 text-yellow-700">
+                    <span className="text-lg">⏳</span>
+                    <p className="text-sm font-semibold">Payment pending - Please complete your payment</p>
+                  </div>
+                )}
+                {order.paymentStatus === 'failed' && (
+                  <div className="flex items-center gap-2 text-red-700">
+                    <span className="text-lg">✗</span>
+                    <p className="text-sm font-semibold">Payment failed - Please try again</p>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Status Messages */}
             <div className="bg-muted p-4 rounded-lg space-y-3">
               {order.status === 'pending' && (
@@ -161,6 +210,12 @@ const OrderStatus = () => {
               )}
               {order.status === 'ready' && (
                 <p className="text-sm font-semibold text-success">Your order is ready for pickup!</p>
+              )}
+              {order.status === 'completed' && (
+                <p className="text-sm font-semibold text-green-600">Order completed. Thank you!</p>
+              )}
+              {order.status === 'cancelled' && (
+                <p className="text-sm font-semibold text-red-600">This order has been cancelled.</p>
               )}
               
               {/* Countdown Timer */}

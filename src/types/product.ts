@@ -25,6 +25,6 @@ export interface Order {
   customerName: string;
   tableNumber?: string; // Table number for the order
   timestamp: Date;
-  paymentStatus?: 'not_required' | 'pending' | 'paid' | 'failed'; // Estado del pago
+  paymentStatus?: 'not_required' | 'pending' | 'paid' | 'failed' | 'counter_pending'; // Estado del pago
   stripeSessionId?: string; // ID de sesión de Stripe
 }
