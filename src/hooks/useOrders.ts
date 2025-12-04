@@ -326,53 +326,74 @@ export const useOrders = create<OrdersStore>((set, get) => {
     },
     
     clearAllOrders: async () => {
-      // Limpiar localmente primero
+      console.log('🗑️ Iniciando eliminación de todos los pedidos...');
+      
+      // 1. Desconectar suscripción de Supabase para evitar recargas
+      if (supabaseChannel) {
+        console.log('🔌 Desconectando suscripción de Supabase...');
+        await supabaseChannel.unsubscribe();
+        supabaseChannel = null;
+      }
+
+      // 2. Limpiar estado local primero
       set({ orders: [] });
       localStorage.removeItem(STORAGE_KEY);
       console.log('✅ Pedidos eliminados del localStorage');
 
-      // Si Supabase está configurado, eliminar todas las órdenes
+      // 3. Si Supabase está configurado, eliminar todas las órdenes
       if (isSupabaseConfigured()) {
         try {
           console.log('🗑️ Eliminando todos los pedidos de Supabase...');
           
-          // Eliminar todos los pedidos directamente (más eficiente)
-          const { error, count } = await supabase
+          // Primero obtener todos los IDs
+          const { data: allOrders, error: fetchError } = await supabase
             .from('orders')
-            .delete()
-            .neq('id', ''); // Esto elimina todos los registros
-
-          if (error) {
-            console.error('❌ Error eliminando órdenes en Supabase:', error);
-            // Intentar método alternativo: obtener IDs y eliminar
-            const { data: allOrders } = await supabase
-              .from('orders')
-              .select('id');
+            .select('id');
+          
+          if (fetchError) {
+            console.error('❌ Error obteniendo pedidos:', fetchError);
+            return;
+          }
+          
+          if (allOrders && allOrders.length > 0) {
+            console.log(`📋 Encontrados ${allOrders.length} pedidos para eliminar`);
+            const ids = allOrders.map(o => o.id);
             
-            if (allOrders && allOrders.length > 0) {
-              const ids = allOrders.map(o => o.id);
-              // Eliminar en lotes si hay muchos
-              for (let i = 0; i < ids.length; i += 100) {
-                const batch = ids.slice(i, i + 100);
-                const { error: batchError } = await supabase
+            // Eliminar todos los pedidos en un solo batch
+            const { error: deleteError, count } = await supabase
+              .from('orders')
+              .delete()
+              .in('id', ids);
+
+            if (deleteError) {
+              console.error('❌ Error eliminando pedidos:', deleteError);
+              // Intentar eliminar uno por uno si falla el batch
+              console.log('🔄 Intentando eliminar uno por uno...');
+              for (const id of ids) {
+                await supabase
                   .from('orders')
                   .delete()
-                  .in('id', batch);
-                
-                if (batchError) {
-                  console.error(`Error eliminando lote ${i}-${i + batch.length}:`, batchError);
-                }
+                  .eq('id', id);
               }
+            } else {
+              console.log(`✅ ${count || allOrders.length} pedidos eliminados de Supabase`);
             }
           } else {
-            console.log(`✅ ${count || 'Todos los'} pedidos eliminados de Supabase`);
+            console.log('✅ No hay pedidos en Supabase para eliminar');
           }
+          
+          // 4. Asegurarse de que el estado local esté vacío
+          set({ orders: [] });
+          localStorage.removeItem(STORAGE_KEY);
+          
         } catch (error) {
           console.error('❌ Error eliminando órdenes:', error);
         }
       } else {
         console.log('⚠️ Supabase no configurado, solo se eliminaron del localStorage');
       }
+      
+      console.log('✅ Proceso de eliminación completado');
     }
   };
   

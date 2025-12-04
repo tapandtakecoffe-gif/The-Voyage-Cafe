@@ -190,17 +190,16 @@ const Admin = () => {
     if (confirm('⚠️ Are you sure you want to delete ALL orders?\n\nThis will delete:\n- All orders from the database\n- All local storage data\n\nThis action CANNOT be undone!')) {
       try {
         await clearAllOrders();
-        // Recargar pedidos después de eliminar
-        await loadOrders();
+        // NO recargar pedidos después de eliminar - mantener el estado vacío
         toast({
           title: "✅ All orders deleted",
           description: "All orders have been permanently removed. Starting fresh!",
           duration: 5000,
         });
-        // Recargar la página para asegurar que todo esté limpio
+        // Recargar la página para asegurar que todo esté limpio y reconectar Supabase
         setTimeout(() => {
           window.location.reload();
-        }, 1000);
+        }, 1500);
       } catch (error) {
         console.error('Error clearing orders:', error);
         toast({
