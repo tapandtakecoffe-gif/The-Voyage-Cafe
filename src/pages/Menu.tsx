@@ -78,6 +78,7 @@ const Menu = () => {
       tableNumber: tableNumber,
       timestamp: new Date(),
       paymentStatus: 'counter_pending' as const, // All orders need admin validation
+      paymentMethod: paymentMethod, // Store payment method: 'stripe' or 'counter'
     };
     
     console.log('🛒 Orden creada, ID:', order.id, 'Payment Status:', order.paymentStatus);

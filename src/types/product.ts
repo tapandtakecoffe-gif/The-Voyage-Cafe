@@ -28,4 +28,5 @@ export interface Order {
   timestamp: Date;
   paymentStatus?: 'not_required' | 'pending' | 'paid' | 'failed' | 'counter_pending'; // Estado del pago
   stripeSessionId?: string; // ID de sesión de Stripe
+  paymentMethod?: 'stripe' | 'counter'; // Método de pago seleccionado
 }

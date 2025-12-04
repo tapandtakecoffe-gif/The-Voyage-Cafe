@@ -11,6 +11,9 @@ export interface OrderRow {
   table_number?: string;
   timestamp: string;
   created_at?: string;
+  payment_status?: 'not_required' | 'pending' | 'paid' | 'failed' | 'counter_pending';
+  stripe_session_id?: string;
+  payment_method?: 'stripe' | 'counter';
 }
 
 // Obtener las variables de entorno
@@ -83,7 +86,10 @@ export const orderToRow = (order: Order): Omit<OrderRow, 'created_at'> => {
     status: order.status,
     customer_name: order.customerName,
     table_number: order.tableNumber || null,
-    timestamp: timestampStr
+    timestamp: timestampStr,
+    payment_status: order.paymentStatus,
+    stripe_session_id: order.stripeSessionId || null,
+    payment_method: order.paymentMethod || null
   };
 };
 
@@ -95,6 +101,9 @@ export const rowToOrder = (row: OrderRow): Order => ({
   status: row.status,
   customerName: row.customer_name,
   tableNumber: row.table_number || undefined,
-  timestamp: new Date(row.timestamp)
+  timestamp: new Date(row.timestamp),
+  paymentStatus: row.payment_status,
+  stripeSessionId: row.stripe_session_id,
+  paymentMethod: row.payment_method
 });
 
