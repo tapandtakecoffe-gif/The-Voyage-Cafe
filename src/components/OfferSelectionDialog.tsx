@@ -192,19 +192,39 @@ export const OfferSelectionDialog = ({ open, onOpenChange, offer, onConfirm }: O
           {/* Price Summary */}
           {selected1 && selected2 && (
             <div className="border-t pt-4 space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Regular Price:</span>
-                <span className="text-muted-foreground line-through">
-                  ₹{(category1.find(p => p.id === selected1)?.price || 0) + (category2.find(p => p.id === selected2)?.price || 0)}
-                </span>
-              </div>
-              <div className="flex justify-between text-lg font-bold">
-                <span>Offer Price:</span>
-                <span className="text-primary">₹{offer.price}</span>
-              </div>
-              <div className="text-xs text-muted-foreground">
-                You save ₹{((category1.find(p => p.id === selected1)?.price || 0) + (category2.find(p => p.id === selected2)?.price || 0)) - offer.price}
-              </div>
+              {isCoffee2x1 ? (
+                <>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">Regular Price (2 coffees):</span>
+                    <span className="text-muted-foreground line-through">
+                      ₹{(category1.find(p => p.id === selected1)?.price || 0) + (category1.find(p => p.id === selected2)?.price || 0)}
+                    </span>
+                  </div>
+                  <div className="flex justify-between text-lg font-bold">
+                    <span>You Pay:</span>
+                    <span className="text-primary">₹{category1.find(p => p.id === selected1)?.price || 0}</span>
+                  </div>
+                  <div className="text-xs text-green-600 font-semibold">
+                    You save ₹{category1.find(p => p.id === selected2)?.price || 0}!
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">Regular Price:</span>
+                    <span className="text-muted-foreground line-through">
+                      ₹{(category1.find(p => p.id === selected1)?.price || 0) + (category2.find(p => p.id === selected2)?.price || 0)}
+                    </span>
+                  </div>
+                  <div className="flex justify-between text-lg font-bold">
+                    <span>Offer Price:</span>
+                    <span className="text-primary">₹{offer.price}</span>
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    You save ₹{((category1.find(p => p.id === selected1)?.price || 0) + (category2.find(p => p.id === selected2)?.price || 0)) - offer.price}
+                  </div>
+                </>
+              )}
             </div>
           )}
         </div>
