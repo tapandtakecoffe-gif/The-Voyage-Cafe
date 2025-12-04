@@ -186,13 +186,29 @@ const Admin = () => {
     navigate('/');
   };
 
-  const handleClearAllOrders = () => {
-    if (confirm('Are you sure you want to delete ALL orders? This action cannot be undone.')) {
-      clearAllOrders();
-      toast({
-        title: "All orders deleted",
-        description: "All orders have been permanently removed",
-      });
+  const handleClearAllOrders = async () => {
+    if (confirm('⚠️ Are you sure you want to delete ALL orders?\n\nThis will delete:\n- All orders from the database\n- All local storage data\n\nThis action CANNOT be undone!')) {
+      try {
+        await clearAllOrders();
+        // Recargar pedidos después de eliminar
+        await loadOrders();
+        toast({
+          title: "✅ All orders deleted",
+          description: "All orders have been permanently removed. Starting fresh!",
+          duration: 5000,
+        });
+        // Recargar la página para asegurar que todo esté limpio
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      } catch (error) {
+        console.error('Error clearing orders:', error);
+        toast({
+          title: "Error",
+          description: "There was an error deleting orders. Please try again.",
+          variant: "destructive",
+        });
+      }
     }
   };
 
