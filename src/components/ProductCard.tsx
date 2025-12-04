@@ -7,6 +7,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Plus, Info, Sparkles } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { ProductInfoDialog } from './ProductInfoDialog';
+import { OfferSelectionDialog } from './OfferSelectionDialog';
 import { getAddOnProducts } from '@/data/products';
 
 interface ProductCardProps {
@@ -17,9 +18,11 @@ interface ProductCardProps {
 export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
   const [infoDialogOpen, setInfoDialogOpen] = useState(false);
   const [addOnDialogOpen, setAddOnDialogOpen] = useState(false);
+  const [offerDialogOpen, setOfferDialogOpen] = useState(false);
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
   
   const availableAddOns = product.addOns ? getAddOnProducts(product.addOns) : [];
+  const isSpecialOffer = product.isSpecialOffer && product.category === 'today-offers';
   
   const handleAddOnToggle = (addOnId: string) => {
     setSelectedAddOns(prev => 
@@ -30,7 +33,9 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
   };
   
   const handleAddClick = () => {
-    if (availableAddOns.length > 0) {
+    if (isSpecialOffer) {
+      setOfferDialogOpen(true);
+    } else if (availableAddOns.length > 0) {
       setAddOnDialogOpen(true);
     } else {
       onAddToCart(product);
@@ -41,6 +46,28 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
     onAddToCart(product, selectedAddOns);
     setAddOnDialogOpen(false);
     setSelectedAddOns([]);
+  };
+
+  const handleOfferConfirm = (selectedProducts: Product[]) => {
+    // Calculate the total regular price
+    const regularTotal = selectedProducts.reduce((sum, p) => sum + p.price, 0);
+    const discount = regularTotal - product.price;
+    
+    // Add each selected product with adjusted pricing to match offer price
+    selectedProducts.forEach((selectedProduct, index) => {
+      // Calculate proportional price adjustment
+      const productRatio = selectedProduct.price / regularTotal;
+      const adjustedPrice = Math.round(selectedProduct.price - (discount * productRatio));
+      
+      // Create a modified product with offer info
+      const offerProduct: Product = {
+        ...selectedProduct,
+        name: `${selectedProduct.name} (${product.name})`,
+        price: adjustedPrice
+      };
+      onAddToCart(offerProduct);
+    });
+    setOfferDialogOpen(false);
   };
 
   const [showFullDescription, setShowFullDescription] = useState(false);
@@ -158,6 +185,16 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
         onOpenChange={setInfoDialogOpen} 
         product={product} 
       />
+
+      {/* Offer Selection Dialog */}
+      {isSpecialOffer && (
+        <OfferSelectionDialog
+          open={offerDialogOpen}
+          onOpenChange={setOfferDialogOpen}
+          offer={product}
+          onConfirm={handleOfferConfirm}
+        />
+      )}
       
       {/* Add-On Selection Dialog */}
       <Dialog open={addOnDialogOpen} onOpenChange={setAddOnDialogOpen}>
