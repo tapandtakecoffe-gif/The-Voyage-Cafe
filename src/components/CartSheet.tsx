@@ -2,9 +2,8 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter } from '@/com
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useCart } from '@/hooks/useCart';
-import { Minus, Plus, Trash2, ShoppingBag, CreditCard, Wallet } from 'lucide-react';
+import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { products } from '@/data/products';
 import { useState } from 'react';
