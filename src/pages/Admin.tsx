@@ -243,7 +243,7 @@ const Admin = () => {
                   )}
                 </div>
               </div>
-              <div className="flex items-center gap-2 mt-1">
+              <div className="flex items-center gap-2 mt-1 flex-wrap">
                 <p className="text-xs text-muted-foreground">
                   {new Date(order.timestamp).toLocaleString('en-US', { 
                     hour: '2-digit', 
@@ -252,6 +252,20 @@ const Admin = () => {
                     day: 'numeric'
                   })}
                 </p>
+                
+                {/* Payment Method Badge */}
+                {order.paymentMethod === 'stripe' && (
+                  <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">
+                    💳 Online
+                  </span>
+                )}
+                {order.paymentMethod === 'counter' && (
+                  <span className="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full font-medium">
+                    💰 Counter
+                  </span>
+                )}
+                
+                {/* Payment Status Badge */}
                 {order.paymentStatus === 'paid' && (
                   <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">
                     ✓ Paid
@@ -259,7 +273,7 @@ const Admin = () => {
                 )}
                 {order.paymentStatus === 'counter_pending' && (
                   <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full font-medium">
-                    💰 Pay at Counter
+                    ⏳ Pending Validation
                   </span>
                 )}
                 {order.paymentStatus === 'pending' && (
