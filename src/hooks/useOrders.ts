@@ -218,17 +218,23 @@ export const useOrders = create<OrdersStore>((set, get) => {
     },
     
     addOrder: async (order) => {
+      console.log('🛒 INICIANDO addOrder - ID:', order.id);
+      console.log('🛒 Orden completa:', JSON.stringify(order, null, 2));
+      
       // Guardar localmente primero para feedback inmediato
       const newOrders = [order, ...get().orders];
+      console.log('💾 Guardando localmente. Total de órdenes:', newOrders.length);
       set({ orders: newOrders });
       saveOrdersToLocal(newOrders);
+      console.log('✅ Orden guardada localmente. Estado actualizado.');
 
       // Si Supabase está configurado, guardar en la base de datos
       if (isSupabaseConfigured()) {
+        console.log('🔗 Supabase configurado, intentando guardar en la nube...');
         try {
           const orderRow = orderToRow(order);
           console.log('💾 Guardando orden en Supabase:', order.id);
-          console.log('📋 Datos de la orden:', orderRow);
+          console.log('📋 Datos de la orden (formato Supabase):', JSON.stringify(orderRow, null, 2));
           
           const { data, error } = await supabase
             .from('orders')
@@ -236,18 +242,24 @@ export const useOrders = create<OrdersStore>((set, get) => {
             .select();
 
           if (error) {
-            console.error('❌ Error guardando orden en Supabase:', error);
-            console.error('Detalles del error:', JSON.stringify(error, null, 2));
+            console.error('❌ ERROR guardando orden en Supabase:', error);
+            console.error('❌ Código del error:', error.code);
+            console.error('❌ Mensaje del error:', error.message);
+            console.error('❌ Detalles completos:', JSON.stringify(error, null, 2));
             // La orden ya está guardada localmente, así que no es crítico
           } else {
-            console.log('✅ Orden guardada exitosamente en Supabase:', data);
+            console.log('✅✅✅ Orden guardada exitosamente en Supabase:', data);
+            console.log('✅ La orden debería aparecer en tiempo real en otros dispositivos');
           }
         } catch (error) {
-          console.error('❌ Error guardando orden:', error);
+          console.error('❌ EXCEPCIÓN al guardar orden:', error);
+          console.error('❌ Stack trace:', (error as Error).stack);
         }
       } else {
         console.warn('⚠️ Supabase no configurado, orden guardada solo localmente');
       }
+      
+      console.log('🛒 FINALIZANDO addOrder - Estado final de órdenes:', get().orders.length);
     },
     
     updateOrderStatus: async (orderId, status) => {
