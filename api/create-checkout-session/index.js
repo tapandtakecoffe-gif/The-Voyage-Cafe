@@ -27,7 +27,7 @@ export default async function handler(req, res) {
   let stripe;
   try {
     stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: '2024-12-18.acacia',
+      apiVersion: '2024-11-20.acacia',
     });
   } catch (stripeInitError) {
     console.error('Error initializing Stripe:', stripeInitError);
