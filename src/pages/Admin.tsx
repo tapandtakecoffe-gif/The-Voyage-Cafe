@@ -56,15 +56,23 @@ const Admin = () => {
     return orderDate.getTime() === targetDate.getTime();
   };
 
-  // Get orders for selected date (or all if no date selected)
+  // Get orders for selected date (or all if no date selected) - ONLY PAID ORDERS
   const dateFilteredOrders = useMemo(() => {
-    if (!selectedDate) return orders;
-    return orders.filter(order => isOrderFromDate(order, selectedDate));
+    // First filter by payment status - only show paid orders
+    const paidOrders = orders.filter(order => 
+      order.paymentStatus === 'paid' || order.paymentStatus === 'not_required'
+    );
+    
+    if (!selectedDate) return paidOrders;
+    return paidOrders.filter(order => isOrderFromDate(order, selectedDate));
   }, [orders, selectedDate]);
 
-  // Filter and sort orders
+  // Filter and sort orders - ONLY SHOW PAID ORDERS
   const filteredAndSortedOrders = useMemo(() => {
-    let filtered = dateFilteredOrders;
+    // First, filter only paid orders
+    let filtered = dateFilteredOrders.filter(order => 
+      order.paymentStatus === 'paid' || order.paymentStatus === 'not_required'
+    );
 
     // Search filter
     if (searchQuery) {
@@ -95,7 +103,7 @@ const Admin = () => {
   const activeOrders = filteredAndSortedOrders.filter(o => !['completed', 'cancelled'].includes(o.status));
   const completedOrders = filteredAndSortedOrders.filter(o => ['completed', 'cancelled'].includes(o.status));
   
-  // Calculate total for selected date (or today)
+  // Calculate total for selected date (or today) - ONLY PAID ORDERS
   const dateTotal = useMemo(() => {
     const targetDate = selectedDate || new Date();
     targetDate.setHours(0, 0, 0, 0);
@@ -104,13 +112,16 @@ const Admin = () => {
       .filter(o => {
         const orderDate = new Date(o.timestamp);
         orderDate.setHours(0, 0, 0, 0);
-        return o.status === 'completed' && orderDate.getTime() === targetDate.getTime();
+        // Only count completed orders that are paid
+        return o.status === 'completed' && 
+               (o.paymentStatus === 'paid' || o.paymentStatus === 'not_required') &&
+               orderDate.getTime() === targetDate.getTime();
       })
       .reduce((sum, order) => sum + order.total, 0);
   }, [dateFilteredOrders, selectedDate]);
 
 
-  // Calculate orders per hour for selected date
+  // Calculate orders per hour for selected date - ONLY PAID ORDERS
   const ordersPerHour = useMemo(() => {
     const targetDate = selectedDate || new Date();
     targetDate.setHours(0, 0, 0, 0);
@@ -118,7 +129,9 @@ const Admin = () => {
     const dayOrders = dateFilteredOrders.filter(o => {
       const orderDate = new Date(o.timestamp);
       orderDate.setHours(0, 0, 0, 0);
-      return orderDate.getTime() === targetDate.getTime();
+      // Only count paid orders
+      return orderDate.getTime() === targetDate.getTime() &&
+             (o.paymentStatus === 'paid' || o.paymentStatus === 'not_required');
     });
     
     if (dayOrders.length === 0) return 0;
@@ -201,14 +214,26 @@ const Admin = () => {
                   )}
                 </div>
               </div>
-              <p className="text-xs text-muted-foreground mt-1">
-                {new Date(order.timestamp).toLocaleString('en-US', { 
-                  hour: '2-digit', 
-                  minute: '2-digit',
-                  month: 'short',
-                  day: 'numeric'
-                })}
-              </p>
+              <div className="flex items-center gap-2 mt-1">
+                <p className="text-xs text-muted-foreground">
+                  {new Date(order.timestamp).toLocaleString('en-US', { 
+                    hour: '2-digit', 
+                    minute: '2-digit',
+                    month: 'short',
+                    day: 'numeric'
+                  })}
+                </p>
+                {order.paymentStatus === 'paid' && (
+                  <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">
+                    ✓ Paid
+                  </span>
+                )}
+                {order.paymentStatus === 'pending' && (
+                  <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full font-medium">
+                    ⏳ Payment Pending
+                  </span>
+                )}
+              </div>
             </div>
             <OrderStatusBadge status={order.status} />
           </div>
