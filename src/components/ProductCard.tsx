@@ -101,7 +101,7 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
                 }`}
               />
             )}
-            <CardTitle className="text-sm font-bold leading-tight flex-1 line-clamp-1">{product.name}</CardTitle>
+            <CardTitle className="text-sm font-bold leading-tight flex-1 break-words">{product.name}</CardTitle>
           </div>
           
           {/* Price */}
