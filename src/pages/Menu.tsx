@@ -426,9 +426,9 @@ const Menu = () => {
             <Alert variant="default" className="mb-6 border-amber-200 bg-amber-50 dark:bg-amber-950/20">
               <AlertTriangle className="h-4 w-4 text-amber-600" />
               <AlertDescription className="text-amber-800 dark:text-amber-200">
-                <strong>⚠️ Versión Demo/Prueba:</strong> Esta es una versión de prueba que puede ser inestable. 
-                Algunas imágenes pueden no coincidir exactamente con los productos reales. 
-                Por favor, ten esto en cuenta al realizar pedidos.
+                <strong>⚠️ Demo/Test Version:</strong> This is a test version that may be unstable. 
+                Some images may not exactly match the actual products. 
+                Please keep this in mind when placing orders.
               </AlertDescription>
             </Alert>
 
