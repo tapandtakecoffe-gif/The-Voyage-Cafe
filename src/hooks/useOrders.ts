@@ -86,12 +86,13 @@ export const useOrders = create<OrdersStore>((set, get) => {
     }
 
     try {
-      // Cargar órdenes iniciales desde Supabase (sin límite)
+      // Cargar órdenes iniciales desde Supabase (sin límite explícito)
+      // PostgREST tiene un límite por defecto de 1000, pero podemos usar range para obtener más
       const { data: initialOrders, error: fetchError } = await supabase
         .from('orders')
-        .select('*')
+        .select('*', { count: 'exact' })
         .order('timestamp', { ascending: false })
-        .limit(1000); // Límite alto para cargar todas las órdenes
+        .range(0, 9999); // Rango amplio para cargar todas las órdenes
 
       if (fetchError) {
         console.error('Error cargando órdenes desde Supabase:', fetchError);
@@ -189,9 +190,9 @@ export const useOrders = create<OrdersStore>((set, get) => {
       try {
         const { data, error } = await supabase
           .from('orders')
-          .select('*')
+          .select('*', { count: 'exact' })
           .order('timestamp', { ascending: false })
-          .limit(1000); // Límite alto para cargar todas las órdenes
+          .range(0, 9999); // Rango amplio para cargar todas las órdenes
 
         if (error) throw error;
 
