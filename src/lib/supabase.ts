@@ -79,7 +79,7 @@ export const orderToRow = (order: Order): Omit<OrderRow, 'created_at'> => {
     timestampStr = new Date().toISOString();
   }
 
-  return {
+  const row: any = {
     id: order.id,
     items: JSON.stringify(order.items),
     total: Number(order.total), // Asegurar que sea número
@@ -89,8 +89,14 @@ export const orderToRow = (order: Order): Omit<OrderRow, 'created_at'> => {
     timestamp: timestampStr,
     payment_status: order.paymentStatus,
     stripe_session_id: order.stripeSessionId || null,
-    payment_method: order.paymentMethod || null
   };
+  
+  // Solo agregar payment_method si existe (para compatibilidad con tablas antiguas)
+  if (order.paymentMethod) {
+    row.payment_method = order.paymentMethod;
+  }
+  
+  return row;
 };
 
 // Helper para convertir OrderRow a Order
