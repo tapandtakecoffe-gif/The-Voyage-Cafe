@@ -65,17 +65,27 @@ try {
 export { supabase };
 
 // Helper para convertir Order a OrderRow
-export const orderToRow = (order: Order): Omit<OrderRow, 'created_at'> => ({
-  id: order.id,
-  items: JSON.stringify(order.items),
-  total: order.total,
-  status: order.status,
-  customer_name: order.customerName,
-  table_number: order.tableNumber || null,
-  timestamp: order.timestamp instanceof Date 
-    ? order.timestamp.toISOString() 
-    : order.timestamp
-});
+export const orderToRow = (order: Order): Omit<OrderRow, 'created_at'> => {
+  // Asegurar que timestamp sea una cadena ISO válida
+  let timestampStr: string;
+  if (order.timestamp instanceof Date) {
+    timestampStr = order.timestamp.toISOString();
+  } else if (typeof order.timestamp === 'string') {
+    timestampStr = order.timestamp;
+  } else {
+    timestampStr = new Date().toISOString();
+  }
+
+  return {
+    id: order.id,
+    items: JSON.stringify(order.items),
+    total: Number(order.total), // Asegurar que sea número
+    status: order.status,
+    customer_name: order.customerName,
+    table_number: order.tableNumber || null,
+    timestamp: timestampStr
+  };
+};
 
 // Helper para convertir OrderRow a Order
 export const rowToOrder = (row: OrderRow): Order => ({
