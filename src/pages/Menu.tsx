@@ -49,7 +49,7 @@ const Menu = () => {
     });
   };
 
-  const handleCheckout = async (tableNumber: string, paymentMethod: 'stripe' | 'counter' = 'stripe') => {
+  const handleCheckout = async (tableNumber: string, paymentMethod: 'stripe' | 'counter' = 'counter') => {
     console.log('🛒🛒🛒 INICIANDO handleCheckout - Mesa:', tableNumber, 'Método:', paymentMethod);
     console.log('🛒 Items en el carrito:', items.length);
     

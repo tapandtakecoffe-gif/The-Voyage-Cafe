@@ -18,7 +18,8 @@ interface CartSheetProps {
 export const CartSheet = ({ open, onOpenChange, onCheckout }: CartSheetProps) => {
   const { items, updateQuantity, removeItem, getTotal, getCoffeeDiscount } = useCart();
   const [tableNumber, setTableNumber] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState<'stripe' | 'counter'>('stripe');
+  // TEMPORAL: Solo Pay at Counter para pruebas
+  const [paymentMethod] = useState<'stripe' | 'counter'>('counter');
   
   const getItemKey = (item: typeof items[0]) => {
     return `${item.id}-${item.selectedAddOns?.sort().join(',') || ''}`;
@@ -28,10 +29,10 @@ export const CartSheet = ({ open, onOpenChange, onCheckout }: CartSheetProps) =>
     if (!tableNumber.trim()) {
       return;
     }
-    onCheckout(tableNumber.trim(), paymentMethod);
+    // TEMPORAL: Siempre usar 'counter' para pruebas
+    onCheckout(tableNumber.trim(), 'counter');
     onOpenChange(false);
     setTableNumber('');
-    setPaymentMethod('stripe'); // Reset to default
   };
 
   return (
@@ -139,26 +140,7 @@ export const CartSheet = ({ open, onOpenChange, onCheckout }: CartSheetProps) =>
                   />
                 </div>
                 
-                {/* Payment Method Selection */}
-                <div className="space-y-3">
-                  <Label>Payment Method</Label>
-                  <RadioGroup value={paymentMethod} onValueChange={(value) => setPaymentMethod(value as 'stripe' | 'counter')}>
-                    <div className="flex items-center space-x-2 p-3 border rounded-lg hover:bg-muted/50 cursor-pointer">
-                      <RadioGroupItem value="stripe" id="stripe" />
-                      <Label htmlFor="stripe" className="flex-1 cursor-pointer flex items-center gap-2">
-                        <CreditCard className="h-4 w-4" />
-                        <span>Pay Online (Stripe)</span>
-                      </Label>
-                    </div>
-                    <div className="flex items-center space-x-2 p-3 border rounded-lg hover:bg-muted/50 cursor-pointer">
-                      <RadioGroupItem value="counter" id="counter" />
-                      <Label htmlFor="counter" className="flex-1 cursor-pointer flex items-center gap-2">
-                        <Wallet className="h-4 w-4" />
-                        <span>Pay at Counter</span>
-                      </Label>
-                    </div>
-                  </RadioGroup>
-                </div>
+                {/* TEMPORAL: Solo Pay at Counter para pruebas - Payment Method Selection oculto */}
                 
                 <div className="space-y-2 py-2 border-t">
                   {getCoffeeDiscount() > 0 && (
@@ -179,7 +161,7 @@ export const CartSheet = ({ open, onOpenChange, onCheckout }: CartSheetProps) =>
                 className="w-full"
                 disabled={!tableNumber.trim() || items.length === 0}
               >
-                {paymentMethod === 'counter' ? 'Place Order (Pay at Counter)' : 'Place Order & Pay'}
+                Place Order (Pay at Counter)
               </Button>
             </SheetFooter>
           </>
