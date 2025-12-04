@@ -17,28 +17,29 @@ export interface OrderRow {
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
 
-// Crear cliente de Supabase solo si las variables están configuradas
-// Si no están configuradas, creamos un cliente dummy que no hará nada
-export const supabase = (supabaseUrl && supabaseAnonKey) 
-  ? createClient(supabaseUrl, supabaseAnonKey, {
-      realtime: {
-        params: {
-          eventsPerSecond: 10
-        }
-      }
-    })
-  : createClient('https://placeholder.supabase.co', 'placeholder-key', {
+// Crear cliente de Supabase de forma segura
+let supabase: ReturnType<typeof createClient>;
+try {
+  if (supabaseUrl && supabaseAnonKey && supabaseUrl !== '' && supabaseAnonKey !== '') {
+    supabase = createClient(supabaseUrl, supabaseAnonKey, {
       realtime: {
         params: {
           eventsPerSecond: 10
         }
       }
     });
-
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn('⚠️ Supabase no está configurado. Las órdenes se guardarán solo localmente.');
-  console.warn('Por favor, configura VITE_SUPABASE_URL y VITE_SUPABASE_ANON_KEY en las variables de entorno de Vercel.');
+  } else {
+    // Cliente dummy para evitar errores
+    supabase = createClient('https://dummy.supabase.co', 'dummy-key');
+    console.warn('⚠️ Supabase no está configurado. Las órdenes se guardarán solo localmente.');
+  }
+} catch (error) {
+  // Si hay un error creando el cliente, crear uno dummy
+  supabase = createClient('https://dummy.supabase.co', 'dummy-key');
+  console.error('Error inicializando Supabase:', error);
 }
+
+export { supabase };
 
 // Helper para convertir Order a OrderRow
 export const orderToRow = (order: Order): Omit<OrderRow, 'created_at'> => ({
