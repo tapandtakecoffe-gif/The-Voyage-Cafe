@@ -81,6 +81,38 @@ const mapCategory = (tableCategory: string): Product['category'] => {
 };
 
 export const products: Product[] = [
+  // ========== TODAY'S OFFERS ==========
+  {
+    id: 'today-offer-1',
+    name: 'Mocktail + Pizza',
+    description: 'Any Mocktail + Any Pizza - Special combo offer',
+    price: 550,
+    image: '', // No image for combo offers
+    category: 'today-offers',
+    isVeggie: true,
+    isSpecialOffer: true
+  },
+  {
+    id: 'today-offer-2',
+    name: 'Mocktail + Burger',
+    description: 'Any Mocktail + Any Burger - Special combo offer',
+    price: 550,
+    image: '', // No image for combo offers
+    category: 'today-offers',
+    isVeggie: false,
+    isSpecialOffer: true
+  },
+  {
+    id: 'today-offer-3',
+    name: 'Pancake + Coffee/Shake',
+    description: 'Any Pancake + Any Coffee or Shake - Special combo offer',
+    price: 400,
+    image: '', // No image for combo offers
+    category: 'today-offers',
+    isVeggie: true,
+    isSpecialOffer: true
+  },
+  
   // ========== VOYAGE BREAKFAST BOARD ==========
   {
     id: 'voyage-breakfast-board-1',
@@ -1866,6 +1898,7 @@ export const getAddOnProducts = (addOnIds: string[]): Product[] => {
 };
 
 export const categoryNames = {
+  'today-offers': "Today's Offers",
   'voyage-breakfast-board': 'Voyage Breakfast Board',
   'voyage-eggs': 'Voyage Eggs',
   'eggs-benedict': 'Eggs Benedict',

@@ -4,7 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Plus, Info } from 'lucide-react';
+import { Plus, Info, Sparkles } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 import { ProductInfoDialog } from './ProductInfoDialog';
 import { getAddOnProducts } from '@/data/products';
 
@@ -84,8 +85,15 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
               className="h-full w-full object-cover"
             />
           ) : (
-            <div className="h-full w-full flex items-center justify-center text-xs text-muted-foreground">
-              No image
+            <div className="h-full w-full flex items-center justify-center text-xs text-muted-foreground bg-gradient-to-br from-muted to-muted/50">
+              {product.isSpecialOffer ? (
+                <div className="text-center px-2">
+                  <Sparkles className="h-6 w-6 mx-auto mb-1 opacity-50" />
+                  <span className="text-[10px]">Special Offer</span>
+                </div>
+              ) : (
+                'No image'
+              )}
             </div>
           )}
         </div>
@@ -102,6 +110,12 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
               />
             )}
             <CardTitle className="text-sm font-bold leading-tight flex-1 break-words">{product.name}</CardTitle>
+            {product.isSpecialOffer && (
+              <Badge variant="default" className="ml-auto flex-shrink-0 bg-orange-500 hover:bg-orange-600 text-white text-xs px-2 py-0">
+                <Sparkles className="h-3 w-3 mr-1" />
+                Offer
+              </Badge>
+            )}
           </div>
           
           {/* Price */}

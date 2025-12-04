@@ -16,7 +16,7 @@ interface CartSheetProps {
 }
 
 export const CartSheet = ({ open, onOpenChange, onCheckout }: CartSheetProps) => {
-  const { items, updateQuantity, removeItem, getTotal } = useCart();
+  const { items, updateQuantity, removeItem, getTotal, getCoffeeDiscount } = useCart();
   const [tableNumber, setTableNumber] = useState('');
   const [paymentMethod, setPaymentMethod] = useState<'stripe' | 'counter'>('stripe');
   
@@ -160,9 +160,17 @@ export const CartSheet = ({ open, onOpenChange, onCheckout }: CartSheetProps) =>
                   </RadioGroup>
                 </div>
                 
-                <div className="flex justify-between items-center py-2 border-t">
-                  <span className="text-lg font-semibold">Total</span>
-                  <span className="text-2xl font-bold text-primary">₹{getTotal().toFixed(2)}</span>
+                <div className="space-y-2 py-2 border-t">
+                  {getCoffeeDiscount() > 0 && (
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-muted-foreground">Coffee 2x1 Discount</span>
+                      <span className="text-green-600 font-semibold">-₹{getCoffeeDiscount().toFixed(2)}</span>
+                    </div>
+                  )}
+                  <div className="flex justify-between items-center">
+                    <span className="text-lg font-semibold">Total</span>
+                    <span className="text-2xl font-bold text-primary">₹{getTotal().toFixed(2)}</span>
+                  </div>
                 </div>
               </div>
               <Button 

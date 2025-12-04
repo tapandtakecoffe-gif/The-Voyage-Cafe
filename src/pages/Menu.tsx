@@ -175,10 +175,17 @@ const Menu = () => {
       groups[product.category].push(product);
     });
     
-    // Order categories according to categoryNames order
+    // Order categories according to categoryNames order, but put today-offers first
     const orderedGroups: Record<string, typeof filteredProducts> = {};
+    
+    // First, add today-offers if it exists
+    if (groups['today-offers'] && groups['today-offers'].length > 0) {
+      orderedGroups['today-offers'] = groups['today-offers'];
+    }
+    
+    // Then add all other categories in order
     categories.forEach(({ value }) => {
-      if (groups[value] && groups[value].length > 0) {
+      if (value !== 'today-offers' && groups[value] && groups[value].length > 0) {
         orderedGroups[value] = groups[value];
       }
     });
@@ -426,12 +433,21 @@ const Menu = () => {
               </div>
             ) : (
               <div className="space-y-6">
-                {Object.entries(groupedProducts).map(([categoryId, categoryProducts]) => (
+                {Object.entries(groupedProducts).map(([categoryId, categoryProducts]) => {
+                  const isCoffeeCategory = ['hot-coffees', 'iced-coffees', 'cold-brews'].includes(categoryId);
+                  return (
                   <div key={categoryId} className="space-y-3">
                     {/* Category Section Title */}
-                    <h2 className="text-xl font-bold text-foreground">
-                      {categoryNames[categoryId as keyof typeof categoryNames] || categoryId}
-                    </h2>
+                    <div className="flex items-center gap-2">
+                      <h2 className="text-xl font-bold text-foreground">
+                        {categoryNames[categoryId as keyof typeof categoryNames] || categoryId}
+                      </h2>
+                      {isCoffeeCategory && (
+                        <span className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded-full font-semibold">
+                          2x1 Offer
+                        </span>
+                      )}
+                    </div>
                     
                     {/* Products Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -444,7 +460,8 @@ const Menu = () => {
                       ))}
                     </div>
                   </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>

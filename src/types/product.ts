@@ -4,12 +4,13 @@ export interface Product {
   description: string;
   price: number;
   image: string;
-  category: 'voyage-breakfast-board' | 'voyage-eggs' | 'eggs-benedict' | 'all-day-breakfast' | 'open-toasties' | 'smoothie-bowls' | 'appetizing-morsels' | 'panini-sandwiches' | 'burgers' | 'homemade-soups' | 'farm-fresh-salads' | 'thin-crust-pizza' | 'veg-pasta' | 'non-veg-pasta' | 'meal-bowls' | 'voyage-steaks' | 'keto' | 'desserts' | 'hot-coffees' | 'iced-coffees' | 'cold-brews' | 'specialty-tea' | 'shakes' | 'mocktails-iced-teas' | 'fresh-juices-coolers';
+  category: 'today-offers' | 'voyage-breakfast-board' | 'voyage-eggs' | 'eggs-benedict' | 'all-day-breakfast' | 'open-toasties' | 'smoothie-bowls' | 'appetizing-morsels' | 'panini-sandwiches' | 'burgers' | 'homemade-soups' | 'farm-fresh-salads' | 'thin-crust-pizza' | 'veg-pasta' | 'non-veg-pasta' | 'meal-bowls' | 'voyage-steaks' | 'keto' | 'desserts' | 'hot-coffees' | 'iced-coffees' | 'cold-brews' | 'specialty-tea' | 'shakes' | 'mocktails-iced-teas' | 'fresh-juices-coolers';
   calories?: number;
   ingredients?: string[];
   isVeggie?: boolean;
   isAddOn?: boolean; // True if this is an add-on product
   addOns?: string[]; // Array of add-on product IDs that can be added to this product
+  isSpecialOffer?: boolean; // True if this is a special offer product
 }
 
 export interface CartItem extends Product {

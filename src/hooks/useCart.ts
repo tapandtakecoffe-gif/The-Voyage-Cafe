@@ -9,6 +9,7 @@ interface CartStore {
   updateQuantity: (itemKey: string, quantity: number) => void;
   clearCart: () => void;
   getTotal: () => number;
+  getCoffeeDiscount: () => number;
 }
 
 // Helper to generate unique key for cart items
@@ -70,7 +71,27 @@ export const useCart = create<CartStore>((set, get) => ({
   clearCart: () => set({ items: [] }),
   
   getTotal: () => {
-    return get().items.reduce((total, item) => {
+    const state = get();
+    
+    // Calculate coffee items for 2x1 offer
+    const coffeeCategories = ['hot-coffees', 'iced-coffees', 'cold-brews'];
+    const coffeeItems = state.items.filter(item => 
+      coffeeCategories.includes(item.category)
+    );
+    
+    // Calculate total coffee quantity
+    const totalCoffeeQuantity = coffeeItems.reduce((sum, item) => sum + item.quantity, 0);
+    
+    // Calculate coffee discount (2x1: pay for half rounded up)
+    const coffeeDiscount = coffeeItems.reduce((discount, item) => {
+      // For each pair, customer pays for 1 instead of 2
+      const pairs = Math.floor(item.quantity / 2);
+      const freeItems = pairs; // Number of free items
+      return discount + (item.price * freeItems);
+    }, 0);
+    
+    // Calculate regular total
+    const regularTotal = state.items.reduce((total, item) => {
       const itemPrice = item.price * item.quantity;
       const addOnsPrice = item.selectedAddOns?.reduce((sum, addOnId) => {
         const addOnProduct = products.find((p: Product) => p.id === addOnId);
@@ -78,5 +99,24 @@ export const useCart = create<CartStore>((set, get) => ({
       }, 0) || 0;
       return total + itemPrice + addOnsPrice;
     }, 0);
+    
+    // Apply coffee discount
+    return regularTotal - coffeeDiscount;
+  },
+  
+  getCoffeeDiscount: () => {
+    const state = get();
+    const coffeeCategories = ['hot-coffees', 'iced-coffees', 'cold-brews'];
+    const coffeeItems = state.items.filter(item => 
+      coffeeCategories.includes(item.category)
+    );
+    
+    const coffeeDiscount = coffeeItems.reduce((discount, item) => {
+      const pairs = Math.floor(item.quantity / 2);
+      const freeItems = pairs;
+      return discount + (item.price * freeItems);
+    }, 0);
+    
+    return coffeeDiscount;
   }
 }));
