@@ -17,11 +17,12 @@ export interface OrderRow {
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL?.trim() || '';
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY?.trim() || '';
 
-// Debug: Verificar variables (solo en desarrollo)
-if (import.meta.env.DEV) {
+// Debug: Verificar variables (siempre, para diagnosticar en producción)
+if (typeof window !== 'undefined') {
   console.log('🔍 Variables de entorno Supabase:');
-  console.log('URL:', supabaseUrl ? '✅ Configurada' : '❌ No configurada');
-  console.log('Key:', supabaseAnonKey ? '✅ Configurada' : '❌ No configurada');
+  console.log('URL:', supabaseUrl || '❌ VACÍA');
+  console.log('Key:', supabaseAnonKey ? '✅ Configurada (' + supabaseAnonKey.substring(0, 20) + '...)' : '❌ VACÍA');
+  console.log('URL válida:', supabaseUrl.startsWith('http') ? '✅' : '❌');
 }
 
 // Verificar si Supabase está configurado correctamente
