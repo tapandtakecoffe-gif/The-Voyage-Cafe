@@ -1433,7 +1433,7 @@ export const products: Product[] = [
     name: 'Espresso',
     description: 'Concentrated form of coffee served in shots of our house blend',
     price: 125,
-    image: '', // No image - doesn't match product
+    image: getImage('hot-coffees-1'),
     category: 'hot-coffees',
     isVeggie: true
   },
