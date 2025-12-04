@@ -47,6 +47,11 @@ export default async function handler(req, res) {
       // Update order payment status in Supabase
       // Use SUPABASE_URL (not VITE_SUPABASE_URL) for serverless functions
       const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+      console.log('🔍 Webhook - Checking environment variables:');
+      console.log('  - SUPABASE_URL:', supabaseUrl ? 'SET' : 'NOT SET');
+      console.log('  - SUPABASE_SERVICE_ROLE_KEY:', process.env.SUPABASE_SERVICE_ROLE_KEY ? 'SET' : 'NOT SET');
+      console.log('  - Order ID:', orderId);
+      
       if (orderId && supabaseUrl && process.env.SUPABASE_SERVICE_ROLE_KEY) {
         try {
           const { createClient } = await import('@supabase/supabase-js');
@@ -68,13 +73,21 @@ export default async function handler(req, res) {
             console.error('❌ Error updating order payment status:', updateError);
             console.error('Order ID:', orderId);
             console.error('Session ID:', session.id);
+            console.error('Error details:', JSON.stringify(updateError, null, 2));
           } else {
             console.log('✅ Order payment status updated successfully');
             console.log('Updated order:', updatedOrder);
+            console.log('Order ID:', orderId, 'now has payment_status: paid');
           }
         } catch (error) {
-          console.error('Error updating order in Supabase:', error);
+          console.error('❌ Exception updating order in Supabase:', error);
+          console.error('Error stack:', error.stack);
         }
+      } else {
+        console.warn('⚠️ Cannot update order - missing required variables:');
+        console.warn('  - orderId:', orderId ? 'OK' : 'MISSING');
+        console.warn('  - supabaseUrl:', supabaseUrl ? 'OK' : 'MISSING');
+        console.warn('  - SUPABASE_SERVICE_ROLE_KEY:', process.env.SUPABASE_SERVICE_ROLE_KEY ? 'OK' : 'MISSING');
       }
       
       break;
