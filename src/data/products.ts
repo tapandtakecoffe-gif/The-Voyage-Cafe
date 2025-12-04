@@ -184,7 +184,7 @@ export const products: Product[] = [
     name: '2x1 Coffee Offer',
     description: 'Buy any coffee, get another coffee free! Select your second coffee when adding to cart. Applies to Hot Coffees, Iced Coffees, and Cold Brews.',
     price: 0, // Price will be determined by first coffee selected
-    image: '', // No image for combo offers
+    image: latteImg, // Coffee image for the offer
     category: 'today-offers',
     isVeggie: true,
     isSpecialOffer: true
