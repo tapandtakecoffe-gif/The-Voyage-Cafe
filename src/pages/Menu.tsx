@@ -46,7 +46,10 @@ const Menu = () => {
     });
   };
 
-  const handleCheckout = (tableNumber: string) => {
+  const handleCheckout = async (tableNumber: string) => {
+    console.log('🛒🛒🛒 INICIANDO handleCheckout - Mesa:', tableNumber);
+    console.log('🛒 Items en el carrito:', items.length);
+    
     const order = {
       id: generateOrderId(),
       items: [...items],
@@ -57,7 +60,15 @@ const Menu = () => {
       timestamp: new Date()
     };
     
-    addOrder(order);
+    console.log('🛒 Orden creada, llamando a addOrder:', order.id);
+    
+    try {
+      await addOrder(order);
+      console.log('🛒 addOrder completado');
+    } catch (error) {
+      console.error('❌ ERROR en addOrder:', error);
+    }
+    
     clearCart();
     
     toast({
