@@ -87,12 +87,12 @@ export const useOrders = create<OrdersStore>((set, get) => {
 
     try {
       // Cargar órdenes iniciales desde Supabase (sin límite explícito)
-      // PostgREST tiene un límite por defecto de 1000, pero podemos usar range para obtener más
-      const { data: initialOrders, error: fetchError } = await supabase
+      // PostgREST tiene un límite por defecto, pero podemos usar range para obtener más
+      const { data: initialOrders, error: fetchError, count } = await supabase
         .from('orders')
         .select('*', { count: 'exact' })
         .order('timestamp', { ascending: false })
-        .range(0, 9999); // Rango amplio para cargar todas las órdenes
+        .range(0, 99999); // Rango muy amplio para cargar todas las órdenes
 
       if (fetchError) {
         console.error('Error cargando órdenes desde Supabase:', fetchError);
@@ -102,6 +102,9 @@ export const useOrders = create<OrdersStore>((set, get) => {
         set({ wsConnected: false });
         return;
       }
+
+      // Debug: Ver cuántas órdenes se cargaron
+      console.log(`📦 Órdenes cargadas desde Supabase: ${initialOrders?.length || 0} de ${count || 'desconocido'} totales`);
 
       // Convertir órdenes de la base de datos al formato de la app
       const orders = initialOrders ? initialOrders.map(rowToOrder) : [];
@@ -188,13 +191,16 @@ export const useOrders = create<OrdersStore>((set, get) => {
       }
 
       try {
-        const { data, error } = await supabase
+        const { data, error, count } = await supabase
           .from('orders')
           .select('*', { count: 'exact' })
           .order('timestamp', { ascending: false })
-          .range(0, 9999); // Rango amplio para cargar todas las órdenes
+          .range(0, 99999); // Rango muy amplio para cargar todas las órdenes
 
         if (error) throw error;
+
+        // Debug: Ver cuántas órdenes se cargaron
+        console.log(`📦 Órdenes recargadas desde Supabase: ${data?.length || 0} de ${count || 'desconocido'} totales`);
 
         const orders = data ? data.map(rowToOrder) : [];
         set({ orders });
